@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Logic games project.cpp">
+    <ClCompile Include="Indigo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
