@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <stdlib.h> // for NUll
 #include <Windows.h>
 
@@ -68,6 +69,85 @@ void printCardStack(bool array[13][7], int arrayRows, int arrayColumns)
         }
     }
 }
+
+bool additionalcheck(string str)
+{
+    if (str == "1")
+    {
+        return true;
+    }
+    else if (str == "2")
+    {
+        return true;
+    }
+    else if (str == "3")
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool cardResult(bool card1, bool card2)
+{
+    string operation;
+    getline(cin, operation, '\n');
+    int length = operation.length();
+
+    while (true)
+    {
+        if (length == 1)
+        {
+            if (additionalcheck(operation))
+            {
+                break;
+            }
+            else
+            {
+                cout << "Invaild input please stick 1, 2, 3..." << endl;
+                getline(cin, operation, '\n');
+                if (additionalcheck(operation))
+                {
+                    break;
+                }
+            }
+        }
+        else
+        {
+            cout << "Invaild input please stick 1, 2, 3..." << endl;
+            getline(cin, operation, '\n');
+            if (additionalcheck(operation))
+            {
+                break;
+            }
+        }
+    }
+
+    int processedOperation = stoi(operation);
+
+    switch (processedOperation)
+    {
+    case 1:
+        return card1 || card2;
+        break;
+    case 2:
+        return card1 && card2;
+        break;
+    case 3:
+        if (card1 != card2)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        break;
+    }
+}
+
 int main()
 {
     bool cardStack[13][7];
@@ -100,4 +180,41 @@ int main()
     }
 
     printCardStack(cardStack, cardStackRows, cardStackColumns);
+
+    int startRow = 5, indent = 1;
+
+    for (int x = 1; x <= 6; x++)
+    {
+        for (int y = startRow; y < startRow + 1; y++)
+        {
+            for (int z = 0; z < cardStackColumns - indent; z++)
+            {
+                cardStack[y - 1][z] = cardResult(cardStack[y][z], cardStack[y][z + 1]);
+                system("cls");
+                printCardStack(cardStack, cardStackRows, cardStackColumns);
+            }
+        }
+
+        startRow--;
+        indent++;
+    }
+
+    startRow = 6;
+    indent = 1;
+
+    for (int x = 1; x <= 6; x++)
+    {
+        for (int y = startRow; y < startRow + 1; y++)
+        {
+            for (int z = 0; z < cardStackColumns - indent; z++)
+            {
+                cardStack[y + 1][z] = cardResult(cardStack[y][z], cardStack[y][z + 1]);
+                system("cls");
+                printCardStack(cardStack, cardStackRows, cardStackColumns);
+            }
+        }
+
+        startRow++;
+        indent++;
+    }
 }
