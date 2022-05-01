@@ -141,6 +141,11 @@
   <ItemGroup>
     <ClCompile Include="Indigo.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="getElements.h" />
+    <ClInclude Include="inputChecks.h" />
+    <ClInclude Include="printElements.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
