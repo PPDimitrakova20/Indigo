@@ -139,7 +139,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="getElements.cpp" />
     <ClCompile Include="Indigo.cpp" />
+    <ClCompile Include="inputChecks.cpp" />
+    <ClCompile Include="printElements.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="getElements.h" />

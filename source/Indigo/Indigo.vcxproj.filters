@@ -18,6 +18,15 @@
     <ClCompile Include="Indigo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="inputChecks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="getElements.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="printElements.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inputChecks.h">
