@@ -5,6 +5,7 @@
 #include "inputChecks.h"
 #include "getElements.h"
 #include "printElements.h"
+/*#include "../../raylib/raylib-master/src/raylib.h"*/
 
 using namespace std;
 
@@ -100,7 +101,7 @@ int main()
         playerSequence++; // Drive the player sequence forward
     }
 
-    /*
+    
     int topSidestart = 5, topSideindent = 1;
     int bottomSidestart = 6, bottomSideindent = 1;
     
@@ -110,7 +111,7 @@ int main()
         {
             for (int z = 0; z < cardStackColumns - topSideindent; z++)
             {
-                cardStack[y - 1][z] = cardResult(cardStack[y][z], cardStack[y][z + 1]);
+                cardStack[y - 1][z] = getCardResult(cardStack[y][z], cardStack[y][z + 1]);
                 system("cls");
                 printCardStack(cardStack, cardStackRows, cardStackColumns);
             }
@@ -126,7 +127,7 @@ int main()
         {
             for (int z = 0; z < cardStackColumns - bottomSideindent; z++)
             {
-                cardStack[y + 1][z] = cardResult(cardStack[y][z], cardStack[y][z + 1]);
+                cardStack[y + 1][z] = getCardResult(cardStack[y][z], cardStack[y][z + 1]);
                 system("cls");
                 printCardStack(cardStack, cardStackRows, cardStackColumns);
             }
@@ -134,6 +135,6 @@ int main()
 
         bottomSidestart++;
         bottomSideindent++;
-    }*/
+    }
 }
 
