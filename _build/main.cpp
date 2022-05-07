@@ -1,10 +1,83 @@
 #include "raylib.h"
 
-
-
 int main()
 {
+    InitWindow(1920, 1080, "dev window");
+    // Load textures for cards -------------------------------
+        // Load OR cards ---------------------------------------------------------------
+        Texture2D cardOr0 = LoadTexture("././resources/OR 0 Card.png");
+        Texture2D cardOr0Inverted = LoadTexture("././resources/OR 0 Card Inverted.png");
+        Texture2D cardOr1 = LoadTexture("././resources/OR 1 Card.png");
+        Texture2D cardOr1Inverted = LoadTexture("././resources/OR 1 Card Inverted.png");
+        // -----------------------------------------------------------------------------
+
+        // Load AND cards -----------------------------------------------------------
+        Texture2D cardAnd0 = LoadTexture("././resources/AND 0.png");
+        Texture2D cardAnd0Inverted = LoadTexture("././resources/AND 2 Inverted.png");
+        Texture2D cardAnd1 = LoadTexture("././resources/AND 1.png");
+        Texture2D cardAnd1Inverted = LoadTexture("././resources/AND 3 Inverted.png");
+        // --------------------------------------------------------------------------
+
+        // Load XOR cards ----------------------------------------------------------------
+        Texture2D cardXor0 = LoadTexture("././resources/XOR 0 Card.png");
+        Texture2D cardXor0Inverted = LoadTexture("././resources/XOR 0 Card Inverted.png");
+        Texture2D cardXor1 = LoadTexture("././resources/XOR 1 Card.png");
+        Texture2D cardXor1Inverted = LoadTexture("././resources/XOR 1 Card Inverted.png");
+        // -------------------------------------------------------------------------------
+
+        // Load Intial binaries and Not card ---------------------------------------------------------
+        Texture2D intialBinary = LoadTexture("././resources/Intial Binary Card.png");
+        Texture2D intialBinaryInverted = LoadTexture("././resources/Intial Binary Card Inverted.png");
+        Texture2D notCard = LoadTexture("././resources/Not Card.png");
+        // -------------------------------------------------------------------------------------------
+
+        // Load Cover card -----------------------------------------------
+        Texture2D coverCard = LoadTexture("././resources/Cover Card.png");
+        // ---------------------------------------------------------------
     
+    // -------------------------------------------------------
+
+    while (!WindowShouldClose())
+    {
+        BeginDrawing();
+
+        // Draw OR cards ------------------------------------------------------
+        DrawTextureEx(cardOr0, Vector2{10,10}, 0, 0.5, RAYWHITE);
+        DrawTextureEx(cardOr0Inverted, Vector2{ 280,10 }, 0, 0.5, RAYWHITE);
+        DrawTextureEx(cardOr1, Vector2{ 550,10 }, 0, 0.5, RAYWHITE);
+        DrawTextureEx(cardOr1Inverted, Vector2{ 820,10 }, 0, 0.5, RAYWHITE);
+        // --------------------------------------------------------------------
+
+        // Draw AND crads -------------------------------------------------------
+        DrawTextureEx(cardAnd0, Vector2{ 10,360 }, 0, 0.5, RAYWHITE);
+        DrawTextureEx(cardAnd0Inverted, Vector2{ 280,360 }, 0, 0.5, RAYWHITE);
+        DrawTextureEx(cardAnd1, Vector2{ 550,360 }, 0, 0.5, RAYWHITE);
+        DrawTextureEx(cardAnd1Inverted, Vector2{ 820,360 }, 0, 0.5, RAYWHITE);
+        // ----------------------------------------------------------------------
+
+        // Draw XOR crads -------------------------------------------------------
+        DrawTextureEx(cardXor0, Vector2{ 10,710 }, 0, 0.5, RAYWHITE);
+        DrawTextureEx(cardXor0Inverted, Vector2{ 280,710 }, 0, 0.5, RAYWHITE);
+        DrawTextureEx(cardXor1, Vector2{ 550,710 }, 0, 0.5, RAYWHITE);
+        DrawTextureEx(cardXor1Inverted, Vector2{ 820,710 }, 0, 0.5, RAYWHITE);
+        // ----------------------------------------------------------------------
+
+        // Draw Intial binaries and Not card -------------------------------------
+        DrawTextureEx(intialBinary, Vector2{ 1090,10 }, 0, 0.5, RAYWHITE);
+        DrawTextureEx(intialBinaryInverted, Vector2{ 1360,10 }, 0, 0.5, RAYWHITE);
+        DrawTextureEx(notCard, Vector2{ 1630,10 }, 0, 0.5, RAYWHITE);
+        // -----------------------------------------------------------------------
+
+        // Draw Cover card ---------------------------------------------
+        DrawTextureEx(coverCard, Vector2{ 1090,360 }, 0, 0.5, RAYWHITE);
+        // -------------------------------------------------------------
+
+        ClearBackground(RAYWHITE);
+        EndDrawing();
+    }
+
+    CloseWindow();
+
     return 0;
 }
 
