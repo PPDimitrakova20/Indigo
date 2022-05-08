@@ -69,12 +69,12 @@ int main()
             if (initialBinaries[i] == 0)
             {
                 // Draw corresponding texture
-                DrawTextureEx(initialBinary, Vector2{ posX, 0 }, 0, 0.25, RAYWHITE);
+                DrawTextureEx(initialBinary, Vector2{ posX, 0 }, 0, 1, RAYWHITE);
             }
             else
             {
                 // Draw corresponding texture
-                DrawTextureEx(initialBinaryInverted, Vector2{ posX, 0 }, 0, 0.25, RAYWHITE);
+                DrawTextureEx(initialBinaryInverted, Vector2{ posX, 0 }, 0, 1, RAYWHITE);
             }
 
             posX += 150;
