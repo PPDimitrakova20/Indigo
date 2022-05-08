@@ -1,8 +1,15 @@
 #include "raylib.h"
+#include "menu.h"
+#include <stdlib.h> // rand, srand
+#include <time.h> // time
 
 int main()
 {
     InitWindow(1920, 1080, "dev window");
+    SetTargetFPS(60);
+
+    ToggleFullscreen();
+
     // Load textures for cards -------------------------------
         // Load OR cards ---------------------------------------------------------------
         Texture2D cardOr0 = LoadTexture("././resources/OR 0 Card.png");
@@ -26,8 +33,8 @@ int main()
         // -------------------------------------------------------------------------------
 
         // Load Intial binaries and Not card ---------------------------------------------------------
-        Texture2D intialBinary = LoadTexture("././resources/Intial Binary Card.png");
-        Texture2D intialBinaryInverted = LoadTexture("././resources/Intial Binary Card Inverted.png");
+        Texture2D initialBinary = LoadTexture("././resources/Intial Binary Card.png");
+        Texture2D initialBinaryInverted = LoadTexture("././resources/Intial Binary Card Inverted.png");
         Texture2D notCard = LoadTexture("././resources/Not Card.png");
         // -------------------------------------------------------------------------------------------
 
@@ -36,49 +43,50 @@ int main()
         // ---------------------------------------------------------------
     
     // -------------------------------------------------------
+        srand(time(NULL));
+
+        bool initialBinaries[6]; // array of 0s and 1s
+
+        float posX = 50;
+
+        for (int i = 0; i < 6; i++)
+        {
+            initialBinaries[i] = rand() % 2; // Assign random value between 0 and 1
+        }
 
     while (!WindowShouldClose())
     {
         BeginDrawing();
 
-        // Draw OR cards ------------------------------------------------------
-        DrawTextureEx(cardOr0, Vector2{10,10}, 0, 0.5, RAYWHITE);
-        DrawTextureEx(cardOr0Inverted, Vector2{ 280,10 }, 0, 0.5, RAYWHITE);
-        DrawTextureEx(cardOr1, Vector2{ 550,10 }, 0, 0.5, RAYWHITE);
-        DrawTextureEx(cardOr1Inverted, Vector2{ 820,10 }, 0, 0.5, RAYWHITE);
-        // --------------------------------------------------------------------
-
-        // Draw AND crads -------------------------------------------------------
-        DrawTextureEx(cardAnd0, Vector2{ 10,360 }, 0, 0.5, RAYWHITE);
-        DrawTextureEx(cardAnd0Inverted, Vector2{ 280,360 }, 0, 0.5, RAYWHITE);
-        DrawTextureEx(cardAnd1, Vector2{ 550,360 }, 0, 0.5, RAYWHITE);
-        DrawTextureEx(cardAnd1Inverted, Vector2{ 820,360 }, 0, 0.5, RAYWHITE);
-        // ----------------------------------------------------------------------
-
-        // Draw XOR crads -------------------------------------------------------
-        DrawTextureEx(cardXor0, Vector2{ 10,710 }, 0, 0.5, RAYWHITE);
-        DrawTextureEx(cardXor0Inverted, Vector2{ 280,710 }, 0, 0.5, RAYWHITE);
-        DrawTextureEx(cardXor1, Vector2{ 550,710 }, 0, 0.5, RAYWHITE);
-        DrawTextureEx(cardXor1Inverted, Vector2{ 820,710 }, 0, 0.5, RAYWHITE);
-        // ----------------------------------------------------------------------
-
-        // Draw Intial binaries and Not card -------------------------------------
-        DrawTextureEx(intialBinary, Vector2{ 1090,10 }, 0, 0.5, RAYWHITE);
-        DrawTextureEx(intialBinaryInverted, Vector2{ 1360,10 }, 0, 0.5, RAYWHITE);
-        DrawTextureEx(notCard, Vector2{ 1630,10 }, 0, 0.5, RAYWHITE);
-        // -----------------------------------------------------------------------
-
-        // Draw Cover card ---------------------------------------------
-        DrawTextureEx(coverCard, Vector2{ 1090,360 }, 0, 0.5, RAYWHITE);
-        // -------------------------------------------------------------
-
         ClearBackground(RAYWHITE);
+
+        // Draw the 6 iniatial binaries
+
+        // Loop between array elements
+        for (int i = 0; i < 6; i++)
+        {
+            // Check if value equals 0
+            if (initialBinaries[i] == 0)
+            {
+                // Draw corresponding texture
+                DrawTextureEx(initialBinary, Vector2{ posX, 0 }, 0, 0.25, RAYWHITE);
+            }
+            else
+            {
+                // Draw corresponding texture
+                DrawTextureEx(initialBinaryInverted, Vector2{ posX, 0 }, 0, 0.25, RAYWHITE);
+            }
+
+            posX += 150;
+        }
+
+        // Reset posX
+        posX = 0;
+        
         EndDrawing();
     }
 
     CloseWindow();
-
-    return 0;
 }
 
 

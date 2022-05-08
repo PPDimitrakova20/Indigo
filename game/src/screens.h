@@ -21,8 +21,7 @@
 *
 *     3. This notice may not be removed or altered from any source distribution.
 *
-**********************************************************************************************/
-
+*********************************************************************************************
 #ifndef SCREENS_H
 #define SCREENS_H
 
@@ -92,4 +91,4 @@ int FinishEndingScreen(void);
 }
 #endif
 
-#endif // SCREENS_H
+#endif // SCREENS_H*/
