@@ -59,7 +59,8 @@ int main()
         BeginDrawing();
 
         ClearBackground(RAYWHITE);
-
+        printMenu();
+        /*
         // Draw the 6 iniatial binaries
 
         // Loop between array elements
@@ -82,7 +83,7 @@ int main()
 
         // Reset posX
         posX = 0;
-        
+        */
         EndDrawing();
     }
 
