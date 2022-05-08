@@ -12,34 +12,26 @@ int main()
 
     // Load textures for cards -------------------------------
         // Load OR cards ---------------------------------------------------------------
-        Texture2D cardOr0 = LoadTexture("././resources/OR 0 Card.png");
-        Texture2D cardOr0Inverted = LoadTexture("././resources/OR 0 Card Inverted.png");
-        Texture2D cardOr1 = LoadTexture("././resources/OR 1 Card.png");
-        Texture2D cardOr1Inverted = LoadTexture("././resources/OR 1 Card Inverted.png");
+        Texture2D cardOr0 = LoadTexture("././resources/OR0.png");
+        Texture2D cardOr1 = LoadTexture("././resources/OR1.png");
         // -----------------------------------------------------------------------------
 
         // Load AND cards -----------------------------------------------------------
-        Texture2D cardAnd0 = LoadTexture("././resources/AND 0.png");
-        Texture2D cardAnd0Inverted = LoadTexture("././resources/AND 2 Inverted.png");
-        Texture2D cardAnd1 = LoadTexture("././resources/AND 1.png");
-        Texture2D cardAnd1Inverted = LoadTexture("././resources/AND 3 Inverted.png");
+        Texture2D cardAnd0 = LoadTexture("././resources/AND0.png");
+        Texture2D cardAnd1 = LoadTexture("././resources/AND1.png");
         // --------------------------------------------------------------------------
 
         // Load XOR cards ----------------------------------------------------------------
-        Texture2D cardXor0 = LoadTexture("././resources/XOR 0 Card.png");
-        Texture2D cardXor0Inverted = LoadTexture("././resources/XOR 0 Card Inverted.png");
-        Texture2D cardXor1 = LoadTexture("././resources/XOR 1 Card.png");
-        Texture2D cardXor1Inverted = LoadTexture("././resources/XOR 1 Card Inverted.png");
+        Texture2D cardXor0 = LoadTexture("././resources/XOR0.png");
+        Texture2D cardXor1 = LoadTexture("././resources/XOR1.png");
         // -------------------------------------------------------------------------------
 
-        // Load Intial binaries and Not card ---------------------------------------------------------
+        // Load Intial binaries ---------------------------------------------------------
         Texture2D initialBinary = LoadTexture("././resources/Intial Binary Card.png");
-        Texture2D initialBinaryInverted = LoadTexture("././resources/Intial Binary Card Inverted.png");
-        Texture2D notCard = LoadTexture("././resources/Not Card.png");
         // -------------------------------------------------------------------------------------------
 
         // Load Cover card -----------------------------------------------
-        Texture2D coverCard = LoadTexture("././resources/Cover Card.png");
+        Texture2D coverCard = LoadTexture("././resources/CoverCard.png");
         // ---------------------------------------------------------------
     
     // -------------------------------------------------------
@@ -74,7 +66,7 @@ int main()
             else
             {
                 // Draw corresponding texture
-                DrawTextureEx(initialBinaryInverted, Vector2{ posX, 0 }, 0, 1, RAYWHITE);
+                DrawTextureEx(initialBinary, Vector2{ posX, 0 }, 180, 1, RAYWHITE);
             }
 
             posX += 150;
