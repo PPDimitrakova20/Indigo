@@ -3,12 +3,57 @@
 #include <stdlib.h> // rand, srand
 #include <time.h> // time
 
+// card stuct
+struct card 
+{
+    int type;
+    bool result;
+};
+
+/* Card Types
+   0 -> OR result 0
+   1 -> OR result 1
+   2 -> AND result 0
+   3 -> AND result 1
+   4 -> XOR result 0
+   5 -> XOR result 1
+*/
+
+// Manage cards according to their type
+void manageNewCards(card altCard, int Array[6])
+{
+    // Update number of cards left from any given type
+    Array[altCard.type]--; 
+
+    srand(time(NULL));
+
+    // Check if there are no more cards from any given type
+    while (Array[altCard.type] < 0) 
+    {
+        Array[altCard.type]++;
+        altCard.type = rand() % 6;
+        Array[altCard.type]--;
+    }
+
+    // Assign corespoding result based on the card's type
+    if (altCard.type % 2 == 0)
+    {
+        altCard.result = false;
+    }
+    else
+    {
+        altCard.result = true;
+    }
+}
+
 int main()
 {
-    InitWindow(1920, 1080, "dev window");
+    const float screenWidth = 1920;
+    const float screenHeight = 1080;
+    InitWindow(screenWidth, screenHeight, "dev window");
     SetTargetFPS(60);
 
-    ToggleFullscreen();
+    /*ToggleFullscreen();*/
 
     // Load textures for cards -------------------------------
         // Load OR cards ---------------------------------------------------------------
@@ -35,7 +80,10 @@ int main()
         // ---------------------------------------------------------------
     
     // -------------------------------------------------------
-        srand(time(NULL));
+
+    srand(time(NULL)); // Randomise seed for rand()
+
+    // Block for intial binaries ----------------------------------------------
 
         bool initialBinaries[6]; // array of 0s and 1s
 
@@ -45,14 +93,45 @@ int main()
         {
             initialBinaries[i] = rand() % 2; // Assign random value between 0 and 1
         }
+    // ----------------------------------------------------------------------------
+
+    // Block for drawing new cards -----------------------------------------------
+        
+        int cardQuanity[6] = { 8,8,8,8,8,8 }; // array for how many cards are left
+        card newCard;
+
+        newCard.type = rand() % 6; // Assign a type to the new card
+
+        switch (newCard.type) // sorting algorithm
+        {
+        case 0:
+            manageNewCards(newCard, cardQuanity);
+            break;
+        case 1:
+            manageNewCards(newCard, cardQuanity);
+            break;
+        case 2:
+            manageNewCards(newCard, cardQuanity);
+            break;
+        case 3:
+            manageNewCards(newCard, cardQuanity);
+            break;
+        case 4:
+            manageNewCards(newCard, cardQuanity);
+            break;
+        case 5:
+            manageNewCards(newCard, cardQuanity);
+            break;
+        }
+    // ---------------------------------------------------------------------------
 
     while (!WindowShouldClose())
     {
         BeginDrawing();
 
         ClearBackground(RAYWHITE);
-        printMenu();
-        /*
+        /*printMenu();*/
+        
         // Draw the 6 iniatial binaries
 
         // Loop between array elements
@@ -63,193 +142,48 @@ int main()
             {
                 // Draw corresponding texture
                 DrawTextureEx(initialBinary, Vector2{ posX, 0 }, 0, 1, RAYWHITE);
+                DrawTextureEx(initialBinary, Vector2{ (screenWidth - posX - 100) + 100, (screenHeight - initialBinary.height) + 150 }, 180, 1, RAYWHITE);
             }
             else
             {
                 // Draw corresponding texture
-                DrawTextureEx(initialBinary, Vector2{ posX, 0 }, 180, 1, RAYWHITE);
+                DrawTextureEx(initialBinary, Vector2{ posX + 100, 150 }, 180, 1, RAYWHITE);
+                DrawTextureEx(initialBinary, Vector2{ screenWidth - posX - 100, screenHeight - initialBinary.height }, 0, 1, RAYWHITE);
             }
 
-            posX += 150;
+            posX += 110;
+        }
+
+        // Draw cover card (representing the card stack)
+        DrawTexture(coverCard, (screenWidth - coverCard.width) / 2, (screenHeight - coverCard.height) / 2 - 110, RAYWHITE);
+
+        // Draw the newly drawm card
+        switch (newCard.type)
+        {
+        case 0:
+            DrawTexture(cardOr0, (screenWidth - coverCard.width) / 2, (screenHeight - coverCard.height) / 2 + 100, RAYWHITE);
+            break;
+        case 1:
+            DrawTexture(cardOr1, (screenWidth - coverCard.width) / 2, (screenHeight - coverCard.height) / 2 + 100, RAYWHITE);
+            break;
+        case 2:
+            DrawTexture(cardAnd0, (screenWidth - coverCard.width) / 2, (screenHeight - coverCard.height) / 2 + 100, RAYWHITE);
+            break;
+        case 3:
+            DrawTexture(cardAnd1, (screenWidth - coverCard.width) / 2, (screenHeight - coverCard.height) / 2 + 100, RAYWHITE);
+            break;
+        case 4:
+            DrawTexture(cardXor0, (screenWidth - coverCard.width) / 2, (screenHeight - coverCard.height) / 2 + 100, RAYWHITE);
+            break;
+        case 5:
+            DrawTexture(cardXor1, (screenWidth - coverCard.width) / 2, (screenHeight - coverCard.height) / 2 + 100, RAYWHITE);
+            break;
         }
 
         // Reset posX
         posX = 0;
-        */
         EndDrawing();
     }
 
     CloseWindow();
 }
-
-
-/* Structs
-struct Ball
-{
-    float x, y;
-    float speedX, speedY;
-    float radius;
-
-    void Draw()
-    {
-        DrawCircle((int)x, (int)y, radius, WHITE);
-
-    }
-};
-
-struct Paddle
-{
-    float x, y;
-    float speed;
-    float width, height;
-
-    Rectangle GetRect()
-    {
-        return Rectangle{ x - width / 2, y - height / 2 , 10, 100 };
-    }
-
-    void Draw()
-    {
-        DrawRectangleRec(GetRect(), WHITE);
-    }
-};
-*/
-
-/* Pong Ball
-    InitWindow(800, 600 ,"Pong");
-    SetWindowState(FLAG_VSYNC_HINT);
-
-    Ball ball;
-    ball.x = GetScreenWidth() / 2.0f;
-    ball.y = GetScreenHeight() / 2.0f;
-    ball.radius = 5;
-    ball.speedX = 300;
-    ball.speedY = 300;
-
-    Paddle leftPaddle;
-
-    leftPaddle.x = 50;
-    leftPaddle.y = GetScreenHeight() / 2;
-    leftPaddle.width = 10;
-    leftPaddle.height = 100;
-    leftPaddle.speed = 500;
-
-    Paddle rightPaddle;
-
-    rightPaddle.x = GetScreenWidth() - 50;
-    rightPaddle.y = GetScreenHeight() / 2;
-    rightPaddle.width = 10;
-    rightPaddle.height = 100;
-    rightPaddle.speed = 500;
-
-    const char* winnerText = nullptr;
-
-    while (!WindowShouldClose())
-    {
-        ball.x += ball.speedX * GetFrameTime();
-        ball.y += ball.speedY * GetFrameTime();
-
-        if (ball.y < 0)
-        {
-            ball.y = 0;
-            ball.speedY *= -1;
-        }
-        if (ball.y > GetScreenHeight())
-        {
-            ball.y = GetScreenHeight();
-            ball.speedY *= -1;
-        }
-
-        if (leftPaddle.y > 600)
-        {
-            leftPaddle.y = 599;
-        }
-        if (leftPaddle.y < 0)
-        {
-            leftPaddle.y = 1;
-        }
-        if (rightPaddle.y > 600)
-        {
-            rightPaddle.y = 599;
-        }
-        if (rightPaddle.y < 0)
-        {
-            rightPaddle.y = 1;
-        }
-
-        if (IsKeyDown(KEY_W))
-        {
-            leftPaddle.y -= leftPaddle.speed * GetFrameTime();
-        }
-        if (IsKeyDown(KEY_S))
-        {
-            leftPaddle.y += leftPaddle.speed * GetFrameTime();
-        }
-
-        if (IsKeyDown(KEY_UP))
-        {
-            rightPaddle.y -= rightPaddle.speed * GetFrameTime();
-        }
-        if (IsKeyDown(KEY_DOWN))
-        {
-            rightPaddle.y += rightPaddle.speed * GetFrameTime();
-        }
-
-        if (CheckCollisionCircleRec(Vector2{ball.x, ball.y}, ball.radius, leftPaddle.GetRect()))
-        {
-            if (ball.speedX < 0)
-            {
-                ball.speedX *= -1.1f;
-                ball.speedY = (ball.y - leftPaddle.y) / (leftPaddle.height / 2) * ball.speedX;
-            }
-            
-        }
-        if (CheckCollisionCircleRec(Vector2{ ball.x, ball.y }, ball.radius, rightPaddle.GetRect()))
-        {
-            if (ball.speedX > 0)
-            {
-                ball.speedX *= -1.1f;
-                ball.speedY = (ball.y - rightPaddle.y) / (rightPaddle.height / 2) * - ball.speedX;
-            }
-        }
-
-        if (ball.x < 0)
-        {
-            winnerText = "Right Player Wins!";
-        }
-        if (ball.x > GetScreenWidth())
-        {
-            winnerText = "Left Player Wins!";
-        }
-
-        if (winnerText && IsKeyDown(KEY_SPACE))
-        {
-            ball.x = GetScreenWidth() / 2;
-            ball.y = GetScreenHeight() / 2;
-            ball.speedX = 300;
-            ball.speedY = 300;
-            winnerText = nullptr;
-        }
-
-        BeginDrawing();
-
-            ClearBackground(BLACK);
-
-            ball.Draw();
-            leftPaddle.Draw();
-            rightPaddle.Draw();
-
-            if (winnerText)
-            {
-                int textwidth = MeasureText(winnerText, 60);
-                DrawText(winnerText, GetScreenWidth() / 2 - textwidth / 2 , GetScreenHeight() / 2 - 30, 60, YELLOW);
-            }
-            DrawFPS(10, 10);
-
-        EndDrawing();
-    }
-
-    CloseWindow();
-
-
-*/
