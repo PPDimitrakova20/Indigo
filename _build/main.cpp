@@ -25,8 +25,6 @@ void manageNewCards(card altCard, int Array[6])
     // Update number of cards left from any given type
     Array[altCard.type]--; 
 
-    srand(time(NULL));
-
     // Check if there are no more cards from any given type
     while (Array[altCard.type] < 0) 
     {
@@ -142,13 +140,13 @@ int main()
             {
                 // Draw corresponding texture
                 DrawTextureEx(initialBinary, Vector2{ posX, 0 }, 0, 1, RAYWHITE);
-                DrawTextureEx(initialBinary, Vector2{ (screenWidth - posX - 100) + 100, (screenHeight - initialBinary.height) + 150 }, 180, 1, RAYWHITE);
+                DrawTextureEx(initialBinary, Vector2{ screenWidth - posX - 100, screenHeight - initialBinary.height }, 0, 1, RAYWHITE);
             }
             else
             {
                 // Draw corresponding texture
                 DrawTextureEx(initialBinary, Vector2{ posX + 100, 150 }, 180, 1, RAYWHITE);
-                DrawTextureEx(initialBinary, Vector2{ screenWidth - posX - 100, screenHeight - initialBinary.height }, 0, 1, RAYWHITE);
+                DrawTextureEx(initialBinary, Vector2{ (screenWidth - posX - 100) + 100, (screenHeight - initialBinary.height) + 150 }, 180, 1, RAYWHITE);
             }
 
             posX += 110;
