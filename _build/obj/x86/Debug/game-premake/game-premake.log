@@ -1,2 +1,32 @@
-﻿  menu.cpp
-  game-premake.vcxproj -> C:\Users\axima\source\repos\Indigo\_bin\Debug\game-premake.exe
+﻿  main.cpp
+C:\Users\axima\source\repos\Indigo\_build\main.cpp(50,29): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\axima\source\repos\Indigo\_build\main.cpp(50,16): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\axima\source\repos\Indigo\_build\main.cpp(81,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\axima\source\repos\Indigo\_build\main.cpp(155,107): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\axima\source\repos\Indigo\_build\main.cpp(155,64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\axima\source\repos\Indigo\_build\main.cpp(161,109): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\axima\source\repos\Indigo\_build\main.cpp(161,66): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\axima\source\repos\Indigo\_build\main.cpp(164,109): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\axima\source\repos\Indigo\_build\main.cpp(164,66): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\axima\source\repos\Indigo\_build\main.cpp(167,110): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\axima\source\repos\Indigo\_build\main.cpp(167,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\axima\source\repos\Indigo\_build\main.cpp(170,110): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\axima\source\repos\Indigo\_build\main.cpp(170,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\axima\source\repos\Indigo\_build\main.cpp(173,110): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\axima\source\repos\Indigo\_build\main.cpp(173,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\axima\source\repos\Indigo\_build\main.cpp(176,110): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\axima\source\repos\Indigo\_build\main.cpp(176,67): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  menu.cpp
+  Generating Code...
+main.obj : error LNK2019: unresolved external symbol _InitWindow referenced in function _main
+main.obj : error LNK2019: unresolved external symbol _WindowShouldClose referenced in function _main
+main.obj : error LNK2019: unresolved external symbol _CloseWindow referenced in function _main
+main.obj : error LNK2019: unresolved external symbol _ClearBackground referenced in function _main
+main.obj : error LNK2019: unresolved external symbol _BeginDrawing referenced in function _main
+main.obj : error LNK2019: unresolved external symbol _EndDrawing referenced in function _main
+main.obj : error LNK2019: unresolved external symbol _SetTargetFPS referenced in function _main
+main.obj : error LNK2019: unresolved external symbol _LoadTexture referenced in function _main
+main.obj : error LNK2019: unresolved external symbol _DrawTexture referenced in function _main
+main.obj : error LNK2019: unresolved external symbol _DrawTextureEx referenced in function _main
+..\_bin\Debug\raylib.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+..\_bin\Debug\game-premake.exe : fatal error LNK1120: 10 unresolved externals

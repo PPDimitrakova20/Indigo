@@ -1,12 +1,8 @@
 #include "menu.h"
 
-void printMenu()
+bool getPlayOption()
 {
-	int counter = 1;
-	Texture2D MenuTextures[4] = { LoadTexture("././resources/Arrow.png"), LoadTexture("././resources/Option2.png"), LoadTexture("././resources/Option1.png"), LoadTexture("././resources/Welcome.png") };
-
-	DrawTexture(MenuTextures[3], (1920 - 429) / 2, (1080 - 240) - 600, RAYWHITE);
-	DrawTexture(MenuTextures[2], (1920 - 429) / 2, (1080 - 240) - 400, RAYWHITE);
-	DrawTexture(MenuTextures[1], (1920 - 429) / 2, (1080 - 240) - 200, RAYWHITE);
-	DrawTexture(MenuTextures[0], ((1920 - 429) / 2) - 170, (1080 - 225) - 600, RAYWHITE);
+	DrawText("Press f to play against another player\nPress j to play against computer", GetScreenWidth() / 2, GetScreenHeight() / 2, 69, GREEN);
+	if (IsKeyPressed(KEY_F))
+		return 1;
 }
