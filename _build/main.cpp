@@ -31,6 +31,11 @@ int main()
     int *ptr = getIntialBinaryOrder(initialBinaries);
     ptr = initialBinaries;
 
+    // Variables for drawing newly drawn card
+    card newlyDrawnCard = { 1, 0};
+    int cardType = getNewlyDrawnCardType(newlyDrawnCard);
+    bool continueDrawing = false;
+
     while (!WindowShouldClose())
     {
         BeginDrawing();
@@ -49,9 +54,24 @@ int main()
         if (gameMode == 1)
         {
             drawInitialBinaries(initialBinaries, screenWidth, screenHeight);
-            drawNewCards();
-            drawCardCover();
-            drawNewlyDrawnCard();
+
+            getNewCard();
+
+            drawCardPile();
+
+            // Check if card pile is clicked
+            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && (GetMouseX() >= 910 && GetMouseX() <= 1010) && (GetMouseY() >= 355 && GetMouseY() <= 505))
+            {
+                drawNewlyDrawnCard(cardType);
+                continueDrawing = true;
+            }
+
+            // Keep drawing newly drawn card
+            if (continueDrawing == true)
+            {
+                drawNewlyDrawnCard(cardType);
+            }
+            // Remember to reset the value of continueDrawing after the card moves out of its place !
             isGameModeChosen = true; // Update gamemode
         }
 

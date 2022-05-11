@@ -25,6 +25,7 @@ Texture2D getTexture(card card)
     }
 }
 
+// Draw 6 intial binary cards
 void drawInitialBinaries(int initialBinaries[6], float scrWidth, float scrHeight)
 {
     float posX = 50;
@@ -54,50 +55,20 @@ void drawInitialBinaries(int initialBinaries[6], float scrWidth, float scrHeight
     posX = 0;
 }
 
-void drawNewCards()
-{
-    // Block for drawing new cards
-
-    int cardQuanity[6] = { 8,8,8,8,8,8 }; // array for how many cards are left
-    card newCard;
-
-    newCard.type = rand() % 6; // Assign a type to the new card
-
-    switch (newCard.type) // sorting algorithm
-    {
-    case 0:
-        manageNewCards(newCard, cardQuanity);
-        break;
-    case 1:
-        manageNewCards(newCard, cardQuanity);
-        break;
-    case 2:
-        manageNewCards(newCard, cardQuanity);
-        break;
-    case 3:
-        manageNewCards(newCard, cardQuanity);
-        break;
-    case 4:
-        manageNewCards(newCard, cardQuanity);
-        break;
-    case 5:
-        manageNewCards(newCard, cardQuanity);
-        break;
-    }
-}
-
-void drawCardCover()
+// Draw card pile 
+void drawCardPile()
 {
     Texture2D coverCard = LoadTexture("././resources/CoverCard.png");
     // Draw cover card (representing the card stack)
     DrawTexture(coverCard, (GetScreenWidth() - coverCard.width) / 2, (GetScreenHeight() - coverCard.height) / 2 - 110, RAYWHITE);
 }
 
-void drawNewlyDrawnCard()
+// Draw newly drawn card based on type
+void drawNewlyDrawnCard(int cardType)
 {
     card newCard;
 
-    newCard.type = rand() % 6; // Assign a type to the new card
+    newCard.type = cardType;
 
     // Draw the newly drawm card
     switch (newCard.type)

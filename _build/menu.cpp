@@ -8,7 +8,11 @@ void drawMenuText()
 int getPlayOption()
 {
 	if (IsKeyPressed(KEY_F))
+	{
 		return 1;
+	}
 	else if (IsKeyPressed(KEY_J))
+	{
 		return 0;
+	}
 }

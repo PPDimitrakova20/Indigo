@@ -11,8 +11,21 @@ struct card
     Texture2D texture;
 };
 
+// player cards struct
+struct player 
+{
+    int type;
+    bool isFull;
+};
+
 // Get the order of the 6 intial binaries
 int *getIntialBinaryOrder(int Array[6]);
 
+// Get type of newly drawn card
+int getNewlyDrawnCardType(card altCard);
+
 // Manage cards according to their type
 void manageNewCards(card altCard, int Array[6]);
+
+// Get new card 
+void getNewCard();

@@ -11,6 +11,13 @@ int *getIntialBinaryOrder(int Array[6])
     return Array;
 }
 
+// Get type of newly drawn card
+int getNewlyDrawnCardType(card altCard)
+{
+    altCard.type = rand() % 6; // Assign a type to the new card
+    return altCard.type;
+}
+
 // Manage cards according to their type
 void manageNewCards(card altCard, int Array[6])
 {
@@ -33,5 +40,38 @@ void manageNewCards(card altCard, int Array[6])
     else
     {
         altCard.result = true;
+    }
+}
+
+// Get new card 
+void getNewCard()
+{
+    // Block for drawing new cards
+
+    int cardQuanity[6] = { 8,8,8,8,8,8 }; // array for how many cards are left
+    card newCard;
+
+    newCard.type = rand() % 6; // Assign a type to the new card
+
+    switch (newCard.type) // sorting algorithm
+    {
+    case 0:
+        manageNewCards(newCard, cardQuanity);
+        break;
+    case 1:
+        manageNewCards(newCard, cardQuanity);
+        break;
+    case 2:
+        manageNewCards(newCard, cardQuanity);
+        break;
+    case 3:
+        manageNewCards(newCard, cardQuanity);
+        break;
+    case 4:
+        manageNewCards(newCard, cardQuanity);
+        break;
+    case 5:
+        manageNewCards(newCard, cardQuanity);
+        break;
     }
 }
