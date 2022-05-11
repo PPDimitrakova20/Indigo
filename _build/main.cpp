@@ -2,9 +2,6 @@
 #include "pvp.h"
 #include "drawCards.h"
 
-// Load Intial binaries
-
-
 /* Card Types
    0 -> OR result 0
    1 -> OR result 1
@@ -14,8 +11,6 @@
    5 -> XOR result 1
 */
 
-
-
 int main()
 {
     const float screenWidth = 1920;
@@ -23,33 +18,41 @@ int main()
     InitWindow(screenWidth, screenHeight, "dev window");
     SetTargetFPS(60);
 
-    ToggleFullscreen();
+    /*ToggleFullscreen();*/
 
     srand(time(NULL)); // Randomise seed for rand()
 
-    int gameMode;
+    // Variables for choosing gamemode
+    int gameMode; // selected gamemode
     bool isGameModeChosen = false;
-    bool isAssigned = false;
-    int initialBinaries[6] = { 0,0,0,0,0,0 };
+    
+    // Variable for drawing the intial binary cards
+    int initialBinaries[6]; // Order of intial binary cards
+    int *ptr = getIntialBinaryOrder(initialBinaries);
+    ptr = initialBinaries;
+
     while (!WindowShouldClose())
     {
         BeginDrawing();
 
+        // Clean frame buffer
         ClearBackground(RAYWHITE);
         
+        // Check if the a gamemode has been selected
         if (!isGameModeChosen)
         {
             drawMenuText();
             gameMode = getPlayOption();
         }
 
+        // Draw gamemode Player vs Player
         if (gameMode == 1)
         {
-            isAssigned = drawInitialBinaries(isAssigned, initialBinaries);
+            drawInitialBinaries(initialBinaries, screenWidth, screenHeight);
             drawNewCards();
             drawCardCover();
             drawNewlyDrawnCard();
-            isGameModeChosen = true;
+            isGameModeChosen = true; // Update gamemode
         }
 
         EndDrawing();

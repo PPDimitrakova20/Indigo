@@ -4,6 +4,7 @@ void drawMenuText()
 {
 	DrawText("Press f to play against another player\nPress j to play against computer", (GetScreenWidth() * 2) / 100, (GetScreenHeight() * 2) / 100, 69, GREEN);
 }
+
 int getPlayOption()
 {
 	if (IsKeyPressed(KEY_F))

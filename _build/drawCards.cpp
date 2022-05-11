@@ -1,8 +1,5 @@
 #include "drawCards.h"
 
-const float screenWidth = 1920;
-const float screenHeight = 1080;
-
 // Load textures for cards
 Texture2D getTexture(card card)
 {
@@ -28,20 +25,9 @@ Texture2D getTexture(card card)
     }
 }
 
-bool drawInitialBinaries(bool isAssigned, int initialBinaries[6])
+void drawInitialBinaries(int initialBinaries[6], float scrWidth, float scrHeight)
 {
     float posX = 50;
-
-    if (!isAssigned)
-    {
-        for (int i = 0; i < 6; i++)
-        {
-            initialBinaries[i] = rand() % 2; // Assign random value between 0 and 1
-        }
-        isAssigned = true;
-    }
-
-    // Draw the 6 iniatial binaries
 
     // Loop between array elements
     for (int i = 0; i < 6; i++)
@@ -51,22 +37,21 @@ bool drawInitialBinaries(bool isAssigned, int initialBinaries[6])
         // Check if value equals 0
         if (initialBinaries[i] == false)
         {
-            // Draw corresponding texture
+            // Draw corresponding texture 750
             DrawTextureEx(binaryCard, Vector2{ posX, 0 }, 0, 1, RAYWHITE);
-            DrawTextureEx(binaryCard, Vector2{ screenWidth - posX - 100, screenHeight - binaryCard.height }, 0, 1, RAYWHITE);
+            DrawTextureEx(binaryCard, Vector2{ scrWidth + posX - 750, scrHeight - binaryCard.height }, 0, 1, RAYWHITE);
         }
         else
         {
             // Draw corresponding texture
             DrawTextureEx(binaryCard, Vector2{ posX + 100, 150 }, 180, 1, RAYWHITE);
-            DrawTextureEx(binaryCard, Vector2{ (screenWidth - posX - 100) + 100, (screenHeight - binaryCard.height) + 150 }, 180, 1, RAYWHITE);
+            DrawTextureEx(binaryCard, Vector2{ (scrWidth + posX - 750) + 100, (scrHeight - binaryCard.height) + 150 }, 180, 1, RAYWHITE);
         }
 
         posX += 110;
     }
     // Reset posX
     posX = 0;
-    return isAssigned;
 }
 
 void drawNewCards()

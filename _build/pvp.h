@@ -11,6 +11,8 @@ struct card
     Texture2D texture;
 };
 
+// Get the order of the 6 intial binaries
+int *getIntialBinaryOrder(int Array[6]);
 
 // Manage cards according to their type
 void manageNewCards(card altCard, int Array[6]);
