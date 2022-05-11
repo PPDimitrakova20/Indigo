@@ -27,6 +27,8 @@ int main()
 
     srand(time(NULL)); // Randomise seed for rand()
 
+    int gameMode;
+    bool isGameModeChosen = false;
     bool isAssigned = false;
     int initialBinaries[6] = { 0,0,0,0,0,0 };
     while (!WindowShouldClose())
@@ -34,10 +36,21 @@ int main()
         BeginDrawing();
 
         ClearBackground(RAYWHITE);
-        isAssigned = drawInitialBinaries(isAssigned, initialBinaries);
-        drawNewCards();
-        drawCardCover();
-        drawNewlyDrawnCard();
+        
+        if (!isGameModeChosen)
+        {
+            drawMenuText();
+            gameMode = getPlayOption();
+        }
+
+        if (gameMode == 1)
+        {
+            isAssigned = drawInitialBinaries(isAssigned, initialBinaries);
+            drawNewCards();
+            drawCardCover();
+            drawNewlyDrawnCard();
+            isGameModeChosen = true;
+        }
 
         EndDrawing();
     }

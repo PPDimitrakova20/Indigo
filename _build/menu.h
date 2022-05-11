@@ -1,4 +1,4 @@
 #pragma once
 #include "raylib.h"
-
-bool getPlayOption();
+void drawMenuText();
+int getPlayOption();
