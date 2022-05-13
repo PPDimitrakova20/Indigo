@@ -1,5 +1,16 @@
 #include "pvp.h"
 
+Card::Card(char* path, int type)
+{
+    this->type = type;
+    texture = LoadTexture(path);
+}
+
+//Card::~Card()
+//{
+//    UnloadTexture(texture);
+//}
+
 // Get the order of the 6 intial binaries
 int *getIntialBinaryOrder(int Array[6])
 {
@@ -12,14 +23,14 @@ int *getIntialBinaryOrder(int Array[6])
 }
 
 // Get type of newly drawn card
-int getNewlyDrawnCardType(card altCard)
+int getNewlyDrawnCardType(Card altCard)
 {
     altCard.type = rand() % 6; // Assign a type to the new card
     return altCard.type;
 }
 
 // Manage cards according to their type
-void manageNewCards(card altCard, int Array[6])
+void manageNewCards(Card altCard, int Array[6])
 {
     // Update number of cards left from any given type
     Array[altCard.type]--;
@@ -49,29 +60,10 @@ void getNewCard()
     // Block for drawing new cards
 
     int cardQuanity[6] = { 8,8,8,8,8,8 }; // array for how many cards are left
-    card newCard;
+    Card newCard;
 
     newCard.type = rand() % 6; // Assign a type to the new card
 
-    switch (newCard.type) // sorting algorithm
-    {
-    case 0:
-        manageNewCards(newCard, cardQuanity);
-        break;
-    case 1:
-        manageNewCards(newCard, cardQuanity);
-        break;
-    case 2:
-        manageNewCards(newCard, cardQuanity);
-        break;
-    case 3:
-        manageNewCards(newCard, cardQuanity);
-        break;
-    case 4:
-        manageNewCards(newCard, cardQuanity);
-        break;
-    case 5:
-        manageNewCards(newCard, cardQuanity);
-        break;
-    }
+    manageNewCards(newCard, cardQuanity);
+   
 }

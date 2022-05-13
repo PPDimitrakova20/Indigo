@@ -2,15 +2,6 @@
 #include "pvp.h"
 #include "drawCards.h"
 
-/* Card Types
-   0 -> OR result 0
-   1 -> OR result 1
-   2 -> AND result 0
-   3 -> AND result 1
-   4 -> XOR result 0
-   5 -> XOR result 1
-*/
-
 int main()
 {
     const float screenWidth = 1920;
@@ -32,7 +23,7 @@ int main()
     ptr = initialBinaries;
 
     // Variables for drawing newly drawn card
-    card newlyDrawnCard = { 1, 0};
+    Card newlyDrawnCard;
     int cardType = getNewlyDrawnCardType(newlyDrawnCard);
     bool continueDrawing = false;
 
