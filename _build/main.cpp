@@ -26,6 +26,8 @@ int main()
     Card newlyDrawnCard;
     int cardType = getNewlyDrawnCardType(newlyDrawnCard);
     bool continueDrawing = false;
+    
+    Texture background = LoadTexture("././resources/Background.png");
 
     while (!WindowShouldClose())
     {
@@ -34,6 +36,8 @@ int main()
         // Clean frame buffer
         ClearBackground(RAYWHITE);
         
+        
+
         // Check if the a gamemode has been selected
         if (!isGameModeChosen)
         {
@@ -44,6 +48,7 @@ int main()
         // Draw gamemode Player vs Player
         if (gameMode == 1)
         {
+            DrawTexture(background, 0, 0, RAYWHITE);
             drawInitialBinaries(initialBinaries, screenWidth, screenHeight);
 
             getNewCard();
@@ -51,7 +56,7 @@ int main()
             drawCardPile();
 
             // Check if card pile is clicked
-            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && (GetMouseX() >= 910 && GetMouseX() <= 1010) && (GetMouseY() >= 355 && GetMouseY() <= 505))
+            if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && (GetMouseX() >= 910 && GetMouseX() <= 1010) && (GetMouseY() >= 464 && GetMouseY() <= 564))
             {
                 drawNewlyDrawnCard(cardType);
                 continueDrawing = true;

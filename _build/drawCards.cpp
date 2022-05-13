@@ -46,17 +46,17 @@ void drawInitialBinaries(int initialBinaries[6], float scrWidth, float scrHeight
         if (initialBinaries[i] == false)
         {
             // Draw corresponding texture 750
-            DrawTextureEx(binaryCard.texture, Vector2{ posX, 0 }, 0, 1, RAYWHITE);
-            DrawTextureEx(binaryCard.texture, Vector2{ scrWidth + posX - 750, scrHeight - binaryCard.texture.height }, 0, 1, RAYWHITE);
+            DrawTextureEx(binaryCard.texture, Vector2{ posX, 20 }, 0, 1, RAYWHITE);
+            DrawTextureEx(binaryCard.texture, Vector2{ scrWidth + posX - 735, scrHeight - binaryCard.texture.height - 20}, 0, 1, RAYWHITE);
         }
         else
         {
             // Draw corresponding texture
-            DrawTextureEx(binaryCard.texture, Vector2{ posX + 100, 150 }, 180, 1, RAYWHITE);
-            DrawTextureEx(binaryCard.texture, Vector2{ (scrWidth + posX - 750) + 100, (scrHeight - binaryCard.texture.height) + 150 }, 180, 1, RAYWHITE);
+            DrawTextureEx(binaryCard.texture, Vector2{ posX + 100, 170 }, 180, 1, RAYWHITE);
+            DrawTextureEx(binaryCard.texture, Vector2{ (scrWidth + posX - 735) + 100, (scrHeight - binaryCard.texture.height) + 130 }, 180, 1, RAYWHITE);
         }
 
-        posX += 110;
+        posX += 105;
     }
     // Reset posX
     posX = 0;
@@ -70,7 +70,7 @@ void drawCardPile()
     setTexture(coverCard);
 
     // Draw cover card (representing the card stack)
-    DrawTexture(coverCard.texture, (GetScreenWidth() - coverCard.texture.width) / 2, (GetScreenHeight() - coverCard.texture.height) / 2 - 110, RAYWHITE);
+    DrawTexture(coverCard.texture, 910, 464, RAYWHITE);
 }
 
 // Draw newly drawn card based on type
@@ -80,5 +80,5 @@ void drawNewlyDrawnCard(int cardType)
     newCard.type = cardType;
     setTexture(newCard);
     // Draw the newly drawn card
-    DrawTexture(newCard.texture, (GetScreenWidth() - newCard.texture.width) / 2, (GetScreenHeight() - newCard.texture.height) / 2 + 100, RAYWHITE);
+    DrawTexture(newCard.texture, 636, 750, RAYWHITE);
 }
