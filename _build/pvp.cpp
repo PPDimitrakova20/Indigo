@@ -67,3 +67,21 @@ void getNewCard()
     manageNewCards(newCard, cardQuanity);
    
 }
+
+void checkForDrag(bool &canMoveCard, int &x, int &y)
+{
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && (GetMouseX() >= 910 && GetMouseX() <= 1010) && (GetMouseY() >= 565 && GetMouseY() <= 715) && !canMoveCard)
+    {
+        canMoveCard = true;
+    }
+    
+    if (canMoveCard)
+    {
+        x = GetMouseX() - 50;
+        y = GetMouseY() - 50;
+        if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+        {
+            canMoveCard = false;
+        }
+    }
+}

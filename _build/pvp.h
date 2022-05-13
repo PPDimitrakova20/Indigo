@@ -48,3 +48,8 @@ void manageNewCards(Card altCard, int Array[6]);
 
 // Get new card 
 void getNewCard();
+
+void changeCardCoords(int& x, int& y);
+
+//Check for dragging
+void checkForDrag(bool& canMoveCard, int &x, int &y);

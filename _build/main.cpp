@@ -27,6 +27,11 @@ int main()
     int cardType = getNewlyDrawnCardType(newlyDrawnCard);
     bool continueDrawing = false;
 
+    // Variables for moving the cards
+    int xcord = 910;
+    int ycord = 464;
+    bool canMoveCard = false;
+
     while (!WindowShouldClose())
     {
         BeginDrawing();
@@ -53,14 +58,18 @@ int main()
             // Check if card pile is clicked
             if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && (GetMouseX() >= 910 && GetMouseX() <= 1010) && (GetMouseY() >= 355 && GetMouseY() <= 505))
             {
-                drawNewlyDrawnCard(cardType);
+                drawNewlyDrawnCard(cardType, xcord, ycord);
                 continueDrawing = true;
             }
 
             // Keep drawing newly drawn card
-            if (continueDrawing == true)
+            if (continueDrawing)
             {
-                drawNewlyDrawnCard(cardType);
+                drawNewlyDrawnCard(cardType, xcord, ycord);
+                if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+                {
+                    checkForDrag(canMoveCard, xcord, ycord);
+                }
             }
             // Remember to reset the value of continueDrawing after the card moves out of its place !
             isGameModeChosen = true; // Update gamemode

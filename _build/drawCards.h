@@ -11,4 +11,4 @@ void drawInitialBinaries(int initialBinaries[6], float scrWidth, float scrHeight
 void drawCardPile();
 
 // Draw newly drawn card based on type
-void drawNewlyDrawnCard(int cardType);
+void drawNewlyDrawnCard(int cardType, int x, int y);
