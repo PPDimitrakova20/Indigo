@@ -26,6 +26,8 @@ int main()
     Card newlyDrawnCard;
     int cardType = getNewlyDrawnCardType(newlyDrawnCard);
     bool continueDrawing = false;
+    
+    Texture background = LoadTexture("././resources/Background.png");
 
     // Variables for moving the cards
     int xcord = 910;
@@ -38,8 +40,8 @@ int main()
 
         // Clean frame buffer
         ClearBackground(RAYWHITE);
-        
-        // Check if the a gamemode has been selected
+
+       // Check if the a gamemode has been selected
         if (!isGameModeChosen)
         {
             drawMenuText();
@@ -49,6 +51,7 @@ int main()
         // Draw gamemode Player vs Player
         if (gameMode == 1)
         {
+            DrawTexture(background, 0, 0, RAYWHITE);
             drawInitialBinaries(initialBinaries, screenWidth, screenHeight);
 
             getNewCard();

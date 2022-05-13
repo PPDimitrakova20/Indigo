@@ -70,7 +70,7 @@ void getNewCard()
 
 void checkForDrag(bool &canMoveCard, int &x, int &y)
 {
-    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && (GetMouseX() >= 910 && GetMouseX() <= 1010) && (GetMouseY() >= 565 && GetMouseY() <= 715) && !canMoveCard)
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && (GetMouseX() >= 910 && GetMouseX() <= 1010) && (GetMouseY() >= 455 && GetMouseY() <= 605) && !canMoveCard)
     {
         canMoveCard = true;
     }

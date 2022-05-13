@@ -27,7 +27,9 @@ struct Card
   
 
     // Unload textures
-    //~Card();
+    // ~Card();
+    
+    
 };
 
 // player cards struct
