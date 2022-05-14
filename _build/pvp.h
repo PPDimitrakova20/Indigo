@@ -3,6 +3,8 @@
 #include <stdlib.h> // rand, srand
 #include <time.h> // time
 #include <string> // time
+#include <vector> // vector
+#include <iostream>
 
 /* Card Types
    0 -> OR result 0
@@ -40,3 +42,6 @@ int *getIntialBinaryOrder(int Array[6]);
 
 // Manage cards according to their type
 void manageNewCards(Card altCard, int Array[6]);
+
+// Shuffles cards
+void shuffleDeck(std::vector<std::pair<Card, Vector2>> &deck);

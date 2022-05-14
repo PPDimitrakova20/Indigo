@@ -4,7 +4,6 @@
 #include <vector>
 #include <utility>
 
-
 typedef struct
 {
 	float Lifetime;
@@ -60,6 +59,7 @@ int main()
 			deckOfCard.push_back(std::make_pair(Card(i), Vector2{ 910, 464 }));
 		}
 	}
+	shuffleDeck(deckOfCard);
 
 	// Variable for drawing the intial binary cards
 	int initialBinaries[6]; // Order of intial binary cards
@@ -116,9 +116,11 @@ int main()
 				index++;
 			}
 
-			//DrawTexture(coverCard.texture, 910, 464, RAYWHITE);
 			if (!(index > 47))
 			{
+				// Draw cover cards
+				DrawTexture(coverCard.texture, 910, 464, RAYWHITE);
+
 				// Keep drawing newly drawn card
 				if (continueDrawing)
 				{
@@ -129,14 +131,17 @@ int main()
 						deckOfCard[index].second.y = GetMouseY() - 50;
 					}
 				}
+				// Starts timer
 				startTimer(&textTimer, textLife);
 			}
 			else
 			{	
+				// Checks if timer hasn't ran out
 				if (!timerDone(&textTimer))
 				{
-					DrawText("Out of cards", 910 - 36*2.5, 464, 36, RED);	
+					DrawText("Out of cards", 910 - 36*2, 464, 36, RED);	
 				}
+				// Updates timer
 				updateTimer(&textTimer);
 			}
 			// Remember to reset the value of continueDrawing after the card moves out of its place !

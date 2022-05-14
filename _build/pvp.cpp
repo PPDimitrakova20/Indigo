@@ -58,3 +58,19 @@ Card getNewCard()
 	manageNewCards(newCard, cardQuanity);
 	return newCard;
 }
+
+
+// Shuffles cards
+void shuffleDeck(std::vector<std::pair<Card, Vector2>>&deck)
+{
+	int randShuffles = rand() % 6;
+
+	for (int i = 0; i < randShuffles; i++)
+	{
+		int randNum = rand() % deck.size() + 1;
+		for (int j = 0; j < randNum; j++)
+		{
+			std::swap(deck[j], deck[rand() % deck.size()]);
+		}
+	}
+}
