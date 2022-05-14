@@ -63,7 +63,7 @@ Card getNewCard()
 // Shuffles cards
 void shuffleDeck(std::vector<std::pair<Card, Vector2>>&deck)
 {
-	int randShuffles = rand() % 6;
+	int randShuffles = rand() % 2 + 4;
 
 	for (int i = 0; i < randShuffles; i++)
 	{
