@@ -50,30 +50,34 @@ void shuffleDeck(std::vector<std::pair<Card, Vector2>>& deck)
 // Deal cards
 void dealCards(int& index, std::vector<std::pair<Card, Vector2>>& deckOfCard, int& whichPlaceholder, bool whichTurn)
 {
-	// Check whose turn it is
-	if (whichTurn)
+	// Check if card index is out of bounds
+	if (index < 48)
 	{
-		// Check if whichPlaceholder is out of bounds
-		if (whichPlaceholder > 3)
+		// Check whose turn it is
+		if (whichTurn)
 		{
-			whichPlaceholder = 0;
+			// Check if whichPlaceholder is out of bounds
+			if (whichPlaceholder > 3)
+			{
+				whichPlaceholder = 0;
+			}
+			// Set card coordinates according to placeHolder
+			deckOfCard[index].second.x = 760 + (135 * whichPlaceholder);
+			deckOfCard[index].second.y = 96;
+			whichPlaceholder++;
 		}
-		// Set card coordinates according to placeHolder
-		deckOfCard[index].second.x = 760 + (135 * whichPlaceholder);
-		deckOfCard[index].second.y = 96;
-		whichPlaceholder++;
-	}
-	else
-	{
-		// Check if whichPlaceholder is out of bounds
-		if (whichPlaceholder > 3)
+		else
 		{
-			whichPlaceholder = 0;
+			// Check if whichPlaceholder is out of bounds
+			if (whichPlaceholder > 3)
+			{
+				whichPlaceholder = 0;
+			}
+			// Set card coordinates according to placeHolder
+			deckOfCard[index].second.x = 655 + (135 * whichPlaceholder);
+			deckOfCard[index].second.y = 833;
+			whichPlaceholder++;
 		}
-		// Set card coordinates according to placeHolder
-		deckOfCard[index].second.x = 655 + (135 * whichPlaceholder);
-		deckOfCard[index].second.y = 833;
-		whichPlaceholder++;
 	}
 }
 
