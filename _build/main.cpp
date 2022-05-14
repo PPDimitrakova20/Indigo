@@ -39,7 +39,7 @@ int main()
 	// Variables for drawing newly drawn card
 	bool continueDrawing = false;
 
-	Texture2D background = LoadTexture("././resources/Background.png");
+	Texture2D background = LoadTexture("./../resources/Background.png");
 	Card coverCard(6);
 	Card binaryCard(7);
 

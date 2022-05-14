@@ -3,14 +3,14 @@
 Card::Card(int type)
 {
 	char* textureSource[8] = {
-	"././resources/OR0.png",
-	"././resources/OR1.png",
-	"././resources/AND0.png",
-	"././resources/AND1.png",
-	"././resources/XOR0.png",
-	"././resources/XOR1.png",
-	"././resources/CoverCard.png",
-	"././resources/IntialBinaryCard.png"
+	"./../resources/OR0.png",
+	"./../resources/OR1.png",
+	"./../resources/AND0.png",
+	"./../resources/AND1.png",
+	"./../resources/XOR0.png",
+	"./../resources/XOR1.png",
+	"./../resources/CoverCard.png",
+	"./../resources/IntialBinaryCard.png"
 	};
 	this->cardType = type;
 	texture = LoadTexture(textureSource[cardType]);
