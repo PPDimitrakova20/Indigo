@@ -1,8 +1,6 @@
 #include "menu.h"
 #include "pvp.h"
 #include "drawCards.h"
-#include <vector>
-#include <utility>
 
 typedef struct
 {
@@ -13,7 +11,9 @@ typedef struct
 void startTimer(Timer* timer, float lifetime)
 {
 	if (timer != NULL)
+	{
 		timer->Lifetime = lifetime;
+	}
 }
 
 // update a timer with the current frame time
@@ -21,14 +21,18 @@ void updateTimer(Timer* timer)
 {
 	// subtract this frame from the timer if it's not allready expired
 	if (timer != NULL && timer->Lifetime > 0)
+	{
 		timer->Lifetime -= GetFrameTime();
+	}
 }
 
 // check if a timer is done.
 bool timerDone(Timer* timer)
 {
 	if (timer != NULL)
+	{
 		return timer->Lifetime <= 0;
+	}
 
 	return false;
 }
@@ -69,7 +73,7 @@ int main()
 	// Variables for drawing newly drawn card
 	bool continueDrawing = false;
 
-	Texture2D background = LoadTexture("./../resources/Background.png");
+	Texture2D background = LoadTexture("././resources/Background.png");
 	Card coverCard(6);
 	Card binaryCard(7);
 
@@ -83,6 +87,9 @@ int main()
 	int index = -1;
 	float textLife = 2.0f;
 	Timer textTimer = { 0 };
+
+	int whichPlaceholder[2] = { 0, 0 };
+	bool whichTurn = 1;
 
 	while (!WindowShouldClose())
 	{
@@ -113,7 +120,9 @@ int main()
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && (GetMouseX() >= 910 && GetMouseX() <= 1010) && (GetMouseY() >= 455 && GetMouseY() <= 605))
 			{
 				continueDrawing = true;
+				whichTurn = !whichTurn;
 				index++;
+				dealCards(index, deckOfCard, whichPlaceholder[whichTurn], whichTurn);
 			}
 
 			if (!(index > 47))
@@ -125,11 +134,12 @@ int main()
 				if (continueDrawing)
 				{
 					drawNewlyDrawnCard(deckOfCard[index].first.texture, deckOfCard[index].second.x, deckOfCard[index].second.y);
-					if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+
+					/*if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
 					{
 						deckOfCard[index].second.x = GetMouseX() - 50;
 						deckOfCard[index].second.y = GetMouseY() - 50;
-					}
+					}*/
 				}
 				// Starts timer
 				startTimer(&textTimer, textLife);

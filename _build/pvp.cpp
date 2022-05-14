@@ -3,14 +3,14 @@
 Card::Card(int type)
 {
 	char* textureSource[8] = {
-	"./../resources/OR0.png",
-	"./../resources/OR1.png",
-	"./../resources/AND0.png",
-	"./../resources/AND1.png",
-	"./../resources/XOR0.png",
-	"./../resources/XOR1.png",
-	"./../resources/CoverCard.png",
-	"./../resources/IntialBinaryCard.png"
+	"././resources/OR0.png",
+	"././resources/OR1.png",
+	"././resources/AND0.png",
+	"././resources/AND1.png",
+	"././resources/XOR0.png",
+	"././resources/XOR1.png",
+	"././resources/CoverCard.png",
+	"././resources/IntialBinaryCard.png"
 	};
 	this->cardType = type;
 	texture = LoadTexture(textureSource[cardType]);
@@ -61,9 +61,9 @@ Card getNewCard()
 
 
 // Shuffles cards
-void shuffleDeck(std::vector<std::pair<Card, Vector2>>&deck)
+void shuffleDeck(std::vector<std::pair<Card, Vector2>>& deck)
 {
-	int randShuffles = rand() % 2 + 4;
+	int randShuffles = rand() % 5 + 1;
 
 	for (int i = 0; i < randShuffles; i++)
 	{
@@ -72,5 +72,30 @@ void shuffleDeck(std::vector<std::pair<Card, Vector2>>&deck)
 		{
 			std::swap(deck[j], deck[rand() % deck.size()]);
 		}
+	}
+}
+
+void dealCards(int& index, std::vector<std::pair<Card, Vector2>>& deckOfCard, int& whichPlaceholder, bool whichTurn)
+{
+	if (whichPlaceholder <= 3)
+	{
+		if (whichTurn)
+		{
+			deckOfCard[index].second.x = 760 + (135 * whichPlaceholder);
+			deckOfCard[index].second.y = 96;
+			index++;
+			whichPlaceholder++;
+		}
+		else
+		{
+			deckOfCard[index].second.x = 655 + (135 * whichPlaceholder);
+			deckOfCard[index].second.y = 833;
+			index++;
+			whichPlaceholder++;
+		}
+	}
+	else
+	{
+		whichPlaceholder = 0;
 	}
 }

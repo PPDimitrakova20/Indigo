@@ -4,6 +4,7 @@
 #include <time.h> // time
 #include <string> // time
 #include <vector> // vector
+#include <utility>
 #include <iostream>
 
 /* Card Types
@@ -45,3 +46,6 @@ void manageNewCards(Card altCard, int Array[6]);
 
 // Shuffles cards
 void shuffleDeck(std::vector<std::pair<Card, Vector2>> &deck);
+
+// Deal cards
+void dealCards(int &index, std::vector<std::pair<Card, Vector2>> &deckOfCard, int& whichPlaceholder, bool whichTurn);
