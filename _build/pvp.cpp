@@ -1,9 +1,19 @@
 #include "pvp.h"
 
-Card::Card(char* path, int type)
+Card::Card(int type)
 {
-    this->type = type;
-    texture = LoadTexture(path);
+    char* textureSource[8] = {
+    "././resources/OR0.png",
+    "././resources/OR1.png",
+    "././resources/AND0.png",
+    "././resources/AND1.png",
+    "././resources/XOR0.png",
+    "././resources/XOR1.png",
+    "././resources/CoverCard.png",
+    "././resources/IntialBinaryCard.png"
+    };
+    this->cardType = type;
+    texture = LoadTexture(textureSource[cardType]);
 }
 
 //Card::~Card()
@@ -22,50 +32,31 @@ int *getIntialBinaryOrder(int Array[6])
     return Array;
 }
 
-// Get type of newly drawn card
-int getNewlyDrawnCardType(Card altCard)
-{
-    altCard.type = rand() % 6; // Assign a type to the new card
-    return altCard.type;
-}
-
 // Manage cards according to their type
 void manageNewCards(Card altCard, int Array[6])
 {
     // Update number of cards left from any given type
-    Array[altCard.type]--;
+    Array[altCard.cardType]--;
 
     // Check if there are no more cards from any given type
-    while (Array[altCard.type] < 0)
+    while (Array[altCard.cardType] < 0)
     {
-        Array[altCard.type]++;
-        altCard.type = rand() % 6;
-        Array[altCard.type]--;
-    }
-
-    // Assign corespoding result based on the card's type
-    if (altCard.type % 2 == 0)
-    {
-        altCard.result = false;
-    }
-    else
-    {
-        altCard.result = true;
+        Array[altCard.cardType]++;
+        altCard.cardType = rand() % 6;
+        Array[altCard.cardType]--;
     }
 }
 
 // Get new card 
-void getNewCard()
+Card getNewCard()
 {
     // Block for drawing new cards
 
     int cardQuanity[6] = { 8,8,8,8,8,8 }; // array for how many cards are left
-    Card newCard;
-
-    newCard.type = rand() % 6; // Assign a type to the new card
+    Card newCard(rand() % 6);
 
     manageNewCards(newCard, cardQuanity);
-   
+    return newCard;
 }
 
 void checkForDrag(bool &canMoveCard, int &x, int &y)

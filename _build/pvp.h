@@ -2,6 +2,7 @@
 #include "raylib.h"
 #include <stdlib.h> // rand, srand
 #include <time.h> // time
+#include <string> // time
 
 /* Card Types
    0 -> OR result 0
@@ -17,19 +18,14 @@
 // card stuct
 struct Card
 {
-    int type;
-    bool result;
+    int cardType;
     Texture2D texture;
 
     // Load texture for card type
-    Card(){};
-    Card(char*, int);
+    Card(int);
   
-
     // Unload textures
-    // ~Card();
-    
-    
+     //~Card();
 };
 
 // player cards struct
@@ -42,14 +38,8 @@ struct player
 // Get the order of the 6 intial binaries
 int *getIntialBinaryOrder(int Array[6]);
 
-// Get type of newly drawn card
-int getNewlyDrawnCardType(Card altCard);
-
 // Manage cards according to their type
 void manageNewCards(Card altCard, int Array[6]);
-
-// Get new card 
-void getNewCard();
 
 void changeCardCoords(int& x, int& y);
 

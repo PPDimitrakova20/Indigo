@@ -1,42 +1,8 @@
 #include "drawCards.h"
 
-void setTexture(Card& card)
-{
-    switch (card.type)
-    {
-    case 0:
-        card.texture = LoadTexture("././resources/OR0.png");
-        break;
-    case 1:
-        card.texture = LoadTexture("././resources/OR1.png");
-        break;
-    case 2:
-        card.texture = LoadTexture("././resources/AND0.png");
-        break;
-    case 3:
-        card.texture = LoadTexture("././resources/AND1.png");
-        break;
-    case 4:
-        card.texture = LoadTexture("././resources/XOR0.png");
-        break;
-    case 5:
-        card.texture = LoadTexture("././resources/XOR1.png");
-        break;
-    case 6:
-        card.texture = LoadTexture("././resources/CoverCard.png");
-        break;
-    case 7:
-        card.texture = LoadTexture("././resources/IntialBinaryCard.png");
-        break;
-    }
-}
-
 // Draw 6 intial binary cards
-void drawInitialBinaries(int initialBinaries[6], float scrWidth, float scrHeight)
+void drawInitialBinaries(int initialBinaries[6], float scrWidth, float scrHeight, Card binaryCard)
 {
-    Card binaryCard;
-    binaryCard.type = 7;
-    setTexture(binaryCard);
     float posX = 50;
 
     // Loop between array elements
@@ -62,23 +28,11 @@ void drawInitialBinaries(int initialBinaries[6], float scrWidth, float scrHeight
     posX = 0;
 }
 
-// Draw card pile 
-void drawCardPile()
-{
-    Card coverCard;
-    coverCard.type = 6;
-    setTexture(coverCard);
-
-    // Draw cover card (representing the card stack)
-    DrawTexture(coverCard.texture, 910, 464, RAYWHITE);
-}
-
 // Draw newly drawn card based on type
 void drawNewlyDrawnCard(int cardType, int x, int y)
 {
-    Card newCard;
-    newCard.type = cardType;
-    setTexture(newCard);
+    Card newCard(cardType);
+
     // Draw the newly drawn card
     DrawTexture(newCard.texture, x, y, RAYWHITE);
 }
