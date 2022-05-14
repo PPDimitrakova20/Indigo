@@ -1,9 +1,9 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(514,5): warning MSB8028: The intermediate directory (obj\x64\Debug\game-premake\) contains files shared from another project (game-premake.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   main.cpp
-C:\Users\axima\source\repos\Indigo\_build\main.cpp(77,54): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-C:\Users\axima\source\repos\Indigo\_build\main.cpp(77,42): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-C:\Users\axima\source\repos\Indigo\_build\main.cpp(92,109): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\axima\source\repos\Indigo\_build\main.cpp(92,81): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\axima\source\repos\Indigo\_build\main.cpp(95,47): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\axima\source\repos\Indigo\_build\main.cpp(96,47): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  game-premake.vcxproj -> C:\Users\axima\source\repos\Indigo\_bin\Debug\Indigo.exe
+C:\Users\4m\Documents\Logic Game Projects\Indigo\_build\main.cpp(77,54): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\4m\Documents\Logic Game Projects\Indigo\_build\main.cpp(77,42): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\4m\Documents\Logic Game Projects\Indigo\_build\main.cpp(93,110): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\4m\Documents\Logic Game Projects\Indigo\_build\main.cpp(93,82): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\4m\Documents\Logic Game Projects\Indigo\_build\main.cpp(96,48): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\4m\Documents\Logic Game Projects\Indigo\_build\main.cpp(97,48): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  game-premake.vcxproj -> C:\Users\4m\Documents\Logic Game Projects\Indigo\_bin\Debug\Indigo.exe

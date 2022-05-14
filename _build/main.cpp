@@ -59,12 +59,12 @@ int main()
 		// Clean frame buffer
 		ClearBackground(RAYWHITE);
 
-			// Check if the a gamemode has been selected
-			if (!isGameModeChosen)
-			{
-				drawMenuText();
-				gameMode = getPlayOption();
-			}
+		// Check if the a gamemode has been selected
+		if (!isGameModeChosen)
+		{
+			drawMenuText();
+			gameMode = getPlayOption();
+		}
 
 		// Draw gamemode Player vs Player
 		if (gameMode == 1)
@@ -72,12 +72,10 @@ int main()
 			DrawTexture(background, 0, 0, RAYWHITE);
 			drawInitialBinaries(initialBinaries, screenWidth, screenHeight, binaryCard);
 
-			for (const auto &c : deckOfCard)
+			for (const auto& c : deckOfCard)
 			{
 				DrawTexture(c.first.texture, c.second.x, c.second.y, RAYWHITE);
 			}
-
-			//DrawTexture(coverCard.texture, 910, 464, RAYWHITE);
 
 			// Check if card pile is clicked
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && (GetMouseX() >= 910 && GetMouseX() <= 1010) && (GetMouseY() >= 455 && GetMouseY() <= 605))
@@ -85,17 +83,26 @@ int main()
 				continueDrawing = true;
 				index++;
 			}
-			
-			// Keep drawing newly drawn card
-			if (continueDrawing)
+
+			//DrawTexture(coverCard.texture, 910, 464, RAYWHITE);
+			if (!(index > 47))
 			{
-				drawNewlyDrawnCard(deckOfCard[index].first.texture, deckOfCard[index].second.x, deckOfCard[index].second.y);
-				if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+				// Keep drawing newly drawn card
+				if (continueDrawing)
 				{
-					deckOfCard[index].second.x = GetMouseX() - 50;
-					deckOfCard[index].second.y = GetMouseY() - 50;
+					drawNewlyDrawnCard(deckOfCard[index].first.texture, deckOfCard[index].second.x, deckOfCard[index].second.y);
+					if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+					{
+						deckOfCard[index].second.x = GetMouseX() - 50;
+						deckOfCard[index].second.y = GetMouseY() - 50;
+					}
 				}
 			}
+			else
+			{
+				DrawText("Out of cards", 910 - 36*4, 464, 36, RED);
+			}
+
 			// Remember to reset the value of continueDrawing after the card moves out of its place !
 			isGameModeChosen = true; // Update gamemode
 		}
