@@ -38,14 +38,30 @@ struct player
     bool isFull;
 };
 
+// Timer struct
+typedef struct
+{
+    float Lifetime;
+}Timer;
+
+// Start or restart a timer with a specific lifetime
+void startTimer(Timer* timer, float lifetime);
+
+
+// Update a timer with the current frame time
+void updateTimer(Timer* timer);
+
+// Check if a timer is done
+bool timerDone(Timer* timer);
+
 // Get the order of the 6 intial binaries
 int *getIntialBinaryOrder(int Array[6]);
-
-// Manage cards according to their type
-void manageNewCards(Card altCard, int Array[6]);
 
 // Shuffles cards
 void shuffleDeck(std::vector<std::pair<Card, Vector2>> &deck);
 
 // Deal cards
 void dealCards(int &index, std::vector<std::pair<Card, Vector2>> &deckOfCard, int& whichPlaceholder, bool whichTurn);
+
+// Get CollisionRentagels X and Y
+Vector2* getCollisionRentagelsCords(Vector2 cords[30]);
