@@ -29,10 +29,8 @@ void drawInitialBinaries(int initialBinaries[6], float scrWidth, float scrHeight
 }
 
 // Draw newly drawn card based on type
-void drawNewlyDrawnCard(int cardType, int x, int y)
+void drawNewlyDrawnCard(Texture2D texture, int x, int y)
 {
-    Card newCard(cardType);
-
     // Draw the newly drawn card
-    DrawTexture(newCard.texture, x, y, RAYWHITE);
+    DrawTexture(texture, x, y, RAYWHITE);
 }

@@ -7,4 +7,4 @@
 // Draw 6 intial binary cards
 void drawInitialBinaries(int initialBinaries[6], float scrWidth, float scrHeight, Card binaryCard);
 
-void drawNewlyDrawnCard(int cardType, int x, int y);
+void drawNewlyDrawnCard(Texture2D texture, int x, int y);

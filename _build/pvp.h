@@ -40,8 +40,3 @@ int *getIntialBinaryOrder(int Array[6]);
 
 // Manage cards according to their type
 void manageNewCards(Card altCard, int Array[6]);
-
-void changeCardCoords(int& x, int& y);
-
-//Check for dragging
-void checkForDrag(bool& canMoveCard, int &x, int &y);
