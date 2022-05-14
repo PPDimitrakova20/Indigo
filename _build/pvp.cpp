@@ -3,14 +3,14 @@
 Card::Card(int type)
 {
 	char* textureSource[8] = {
-	"././resources/OR0.png",
-	"././resources/OR1.png",
-	"././resources/AND0.png",
-	"././resources/AND1.png",
-	"././resources/XOR0.png",
-	"././resources/XOR1.png",
-	"././resources/CoverCard.png",
-	"././resources/IntialBinaryCard.png"
+	"./../resources/OR0.png",
+	"./../resources/OR1.png",
+	"./../resources/AND0.png",
+	"./../resources/AND1.png",
+	"./../resources/XOR0.png",
+	"./../resources/XOR1.png",
+	"./../resources/CoverCard.png",
+	"./../resources/IntialBinaryCard.png"
 	};
 	this->cardType = type;
 	texture = LoadTexture(textureSource[cardType]);
@@ -77,25 +77,25 @@ void shuffleDeck(std::vector<std::pair<Card, Vector2>>& deck)
 
 void dealCards(int& index, std::vector<std::pair<Card, Vector2>>& deckOfCard, int& whichPlaceholder, bool whichTurn)
 {
-	if (whichPlaceholder <= 3)
+
+	if (whichTurn)
 	{
-		if (whichTurn)
+		if (whichPlaceholder > 3)
 		{
-			deckOfCard[index].second.x = 760 + (135 * whichPlaceholder);
-			deckOfCard[index].second.y = 96;
-			index++;
-			whichPlaceholder++;
+			whichPlaceholder = 0;
 		}
-		else
-		{
-			deckOfCard[index].second.x = 655 + (135 * whichPlaceholder);
-			deckOfCard[index].second.y = 833;
-			index++;
-			whichPlaceholder++;
-		}
+		deckOfCard[index].second.x = 760 + (135 * whichPlaceholder);
+		deckOfCard[index].second.y = 96;
+		whichPlaceholder++;
 	}
 	else
 	{
-		whichPlaceholder = 0;
+		if (whichPlaceholder > 3)
+		{
+			whichPlaceholder = 0;
+		}
+		deckOfCard[index].second.x = 655 + (135 * whichPlaceholder);
+		deckOfCard[index].second.y = 833;
+		whichPlaceholder++;
 	}
 }
