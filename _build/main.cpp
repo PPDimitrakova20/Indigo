@@ -4,6 +4,36 @@
 #include <vector>
 #include <utility>
 
+
+typedef struct
+{
+	float Lifetime;
+}Timer;
+
+// start or restart a timer with a specific lifetime
+void startTimer(Timer* timer, float lifetime)
+{
+	if (timer != NULL)
+		timer->Lifetime = lifetime;
+}
+
+// update a timer with the current frame time
+void updateTimer(Timer* timer)
+{
+	// subtract this frame from the timer if it's not allready expired
+	if (timer != NULL && timer->Lifetime > 0)
+		timer->Lifetime -= GetFrameTime();
+}
+
+// check if a timer is done.
+bool timerDone(Timer* timer)
+{
+	if (timer != NULL)
+		return timer->Lifetime <= 0;
+
+	return false;
+}
+
 int main()
 {
 	const int screenWidth = 1920;
@@ -51,6 +81,8 @@ int main()
 	bool isDeckOfCardDrawn = false;
 
 	int index = -1;
+	float textLife = 2.0f;
+	Timer textTimer = { 0 };
 
 	while (!WindowShouldClose())
 	{
@@ -97,12 +129,16 @@ int main()
 						deckOfCard[index].second.y = GetMouseY() - 50;
 					}
 				}
+				startTimer(&textTimer, textLife);
 			}
 			else
-			{
-				DrawText("Out of cards", 910 - 36*4, 464, 36, RED);
+			{	
+				if (!timerDone(&textTimer))
+				{
+					DrawText("Out of cards", 910 - 36*2.5, 464, 36, RED);	
+				}
+				updateTimer(&textTimer);
 			}
-
 			// Remember to reset the value of continueDrawing after the card moves out of its place !
 			isGameModeChosen = true; // Update gamemode
 		}
