@@ -2,6 +2,7 @@
 
 Card::Card(int type, Vector2 cords)
 {
+	// Matrix with texrues sources
 	char* textureSource[8][2] = {
 		{"./../resources/OR0.png", "./../resources/OR0Inverted.png"},
 		{"./../resources/OR1.png", "./../resources/OR1Inverted.png"},
@@ -12,30 +13,17 @@ Card::Card(int type, Vector2 cords)
 		{"./../resources/CoverCard.png", "./../resources/CoverCard.png"},
 		{"./../resources/IntialBinaryCard.png", "./../resources/IntialBinaryCard.png"}
 	};
+
+	// Assign card type and coordinates
 	cardType = type;
 	coordinates = cords;
+
+	// Load textures
 	textures[0] = LoadTexture(textureSource[cardType][0]);
 	textures[1] = LoadTexture(textureSource[cardType][1]);
 }
 
-void Card::drawCard()
-{
-	if (coordinates.x < 1243)
-	{
-		DrawTextureEx(textures[0], Vector2{coordinates.x,coordinates.y}, 0, 1, RAYWHITE);
-	}
-	else 
-	{
-		DrawTextureEx(textures[1], Vector2{coordinates.x, coordinates.y}, 0, 1, RAYWHITE);
-	}
-}
-
-//Card::~Card()
-//{
-//    UnloadTexture(texture);
-//}
-
-// Get the order of the 6 intial binaries
+// Get the order of the 6 initial binaries
 int* getIntialBinaryOrder(int Array[6])
 {
 	for (int i = 0; i < 6; i++)
@@ -61,13 +49,15 @@ void shuffleDeck(std::vector<Card> &deck)
 	}
 }
 
+// Get postion of deal spots
 dealCords* getDealCardsPos(dealCords array[8])
 {
 	Vector2 p1StratingPos = { 760, 96 };
-	Vector2 p2StratingPos = { 655, 833 };
+	Vector2 p2StratingPos = { 655, 834 };
 
 	int index = 0;
 
+	// Player1 deal spots
 	for (int i = 0; i < 4; i++)
 	{
 		array[index].pos.x = p1StratingPos.x + (i * 135);
@@ -75,6 +65,7 @@ dealCords* getDealCardsPos(dealCords array[8])
 		index++;
 	}
 
+	// Player1 deal spots
 	for (int i = 0; i < 4; i++)
 	{
 		array[index].pos.x = p2StratingPos.x + (i * 135);
@@ -88,7 +79,6 @@ dealCords* getDealCardsPos(dealCords array[8])
 // Deal cards
 void dealCards(int& index, std::vector<Card> &deckOfCards, int& whichPlaceholder, bool whichTurn)
 {
-
 	// Check if card index is out of bounds
 	if (index < 48)
 	{

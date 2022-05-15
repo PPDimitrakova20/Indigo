@@ -1,6 +1,8 @@
 #pragma once
 #include "raylib.h"
 
-void drawMenuText();
+// Draw menu
+void drawMenu();
 
+// Handle keyboard input for differnt gamemodes
 int getPlayOption();

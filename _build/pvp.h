@@ -24,13 +24,12 @@ struct Card
     int cardType;
     Texture2D textures[2];
     Vector2 coordinates;
+    bool isPlaced = false;
 
     // Load texture for card type
     Card(int, Vector2);
-  
-    // Unload textures
-     //~Card();
 
+    // Continue drawing cards from the vector
     void drawCard();
 };
 
@@ -39,6 +38,7 @@ struct Coordinates
 {
     Vector2 collisionCords = {0,0}; // Rectangle for collision check
     Vector2 placementCords = {0,0}; // Where a dragged card will clip to
+    bool isFull = false;
 };
 
 // Deal cards cords
@@ -57,7 +57,6 @@ typedef struct
 // Start or restart a timer with a specific lifetime
 void startTimer(Timer* timer, float lifetime);
 
-
 // Update a timer with the current frame time
 void updateTimer(Timer* timer);
 
@@ -70,6 +69,7 @@ int *getIntialBinaryOrder(int Array[6]);
 // Shuffles cards
 void shuffleDeck(std::vector<Card> &deck);
 
+// Get postion of deal spots
 dealCords* getDealCardsPos(dealCords array[8]);
 
 // Deal cards

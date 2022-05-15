@@ -28,28 +28,40 @@ void drawInitialBinaries(int initialBinaries[6], float scrWidth, float scrHeight
     posX = 0;
 }
 
+// Draw intial player decks
 void drawInitailPlayerDecks(dealCords dealSpots[8], int& index, std::vector<Card>& deckOfCards, bool whichTurn)
 {
     for (int i = 0; i < 8; i++)
     {
+        // Update card position of a spot in a player deck
         deckOfCards[i].coordinates.x = dealSpots[i].pos.x;
         deckOfCards[i].coordinates.y = dealSpots[i].pos.y;
+
+        // Flip texture base on where it will be drawn
         if (i < 4)
         {
-            DrawTextureEx(deckOfCards[i].textures[0], Vector2{deckOfCards[i].coordinates.x, deckOfCards[i].coordinates.y}, 0, 1, RAYWHITE);
+            DrawTextureV(deckOfCards[i].textures[0], deckOfCards[i].coordinates, RAYWHITE);
         }
         else
         {
-            DrawTextureEx(deckOfCards[i].textures[1], Vector2{deckOfCards[i].coordinates.x, deckOfCards[i].coordinates.y}, 0, 1, RAYWHITE);
+            DrawTextureV(deckOfCards[i].textures[1], deckOfCards[i].coordinates, RAYWHITE);
         }
         
         index++;
     }
 }
 
-// Draw newly drawn card based on type
-void drawNewlyDrawnCard(Texture2D texture[2], float x, float y)
+// Continue drawing cards from the vector
+void Card::drawCard()
 {
-    // Draw the newly drawn card
-    DrawTextureEx(texture[0], Vector2{x,y}, 0, 1, RAYWHITE);
+    // Check where to draw inverted textures
+    if (coordinates.x > 1243 || ((coordinates.x > 645 && coordinates.y > GetScreenHeight() / (float)2 -100)))
+    {
+        DrawTextureEx(textures[1], Vector2{ coordinates.x,coordinates.y }, 0, 1, RAYWHITE);
+    }
+    else
+    {
+        DrawTextureEx(textures[0], Vector2{ coordinates.x, coordinates.y }, 0, 1, RAYWHITE);
+    }
 }
+

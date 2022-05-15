@@ -54,9 +54,7 @@ int main()
 
 	// Timer variables
 	float textLife = 2.0f;
-	float checkLife = 180.0f;
 	Timer textTimer = { 0 };
-	Timer checkTimer = { 0 };
 
 	// Dealing cards variables
 	int whichPlaceholder[2] = { 0, 0 };
@@ -67,10 +65,15 @@ int main()
 	Coordinates* ptrCords = getCollisionRentagelsCords(cords);
 	ptrCords = cords;
 
+	// Varibles for dealing cards
 	dealCords dealSpots[8];
 	dealCords* ptrDealPos = getDealCardsPos(dealSpots);
 	ptrDealPos = dealSpots;
 	bool intialPlayerDecksDrawn = false;
+
+	// Still inder development
+	bool p1Pyramid[6][6]{}; 
+	bool p2Pyramid[6][6]{};
 
 	while (!WindowShouldClose())
 	{
@@ -82,7 +85,7 @@ int main()
 		// Check if the a gamemode has been selected
 		if (!isGameModeChosen)
 		{
-			drawMenuText();
+			drawMenu();
 			gameMode = getPlayOption();
 		}
 
@@ -105,8 +108,10 @@ int main()
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && (GetMouseX() >= 910 && GetMouseX() <= 1010) && (GetMouseY() >= 455 && GetMouseY() <= 605))
 			{
 				continueDrawing = true;
+				// Check if the initail Player decks are already drawn
 				if (!intialPlayerDecksDrawn)
 				{
+					// draw the initial player decks
 					drawInitailPlayerDecks(dealSpots, index, deckOfCards, whichTurn);
 					intialPlayerDecksDrawn = true;
 				}
@@ -128,26 +133,31 @@ int main()
 				// Keep drawing newly drawn card
 				if (continueDrawing)
 				{
-					drawNewlyDrawnCard(deckOfCards[index].textures, deckOfCards[index].coordinates.x, deckOfCards[index].coordinates.y);
-
+					// Check if the player attempts to move any of the logical gate cards
 					for (int i = 0; i < 48; i++)
 					{
+						// Check if the mouse is over the and if the left mouse button is pressed
 						if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) &&
 							(GetMouseX() >= deckOfCards[i].coordinates.x && GetMouseX() <= deckOfCards[i].coordinates.x + 100) &&
 							(GetMouseY() >= deckOfCards[i].coordinates.y && GetMouseY() <= deckOfCards[i].coordinates.y + 150) &&
 							(deckOfCards[i].coordinates.x <= 909 || deckOfCards[i].coordinates.x  >= 911) && 
-							(deckOfCards[i].coordinates.y <= 463 || deckOfCards[i].coordinates.y >= 465))
+							(deckOfCards[i].coordinates.y <= 463 || deckOfCards[i].coordinates.y >= 465) && deckOfCards[i].isPlaced == false)
 						{
+							// Update the cards position so it moves with the mouse
 							deckOfCards[i].coordinates.x = GetMouseX() - 50;
 							deckOfCards[i].coordinates.y = GetMouseY() - 75;
 
+							// Check if the card id dragged over a posible clip point
 							for (int j = 0; j < 30; j++)
 							{
 								if ((GetMouseX() >= cords[j].collisionCords.x && GetMouseX() <= cords[j].collisionCords.x + 50) &&
-									(GetMouseY() >= cords[j].collisionCords.y && GetMouseY() <= cords[j].collisionCords.y + 50))
+									(GetMouseY() >= cords[j].collisionCords.y && GetMouseY() <= cords[j].collisionCords.y + 50) && cords[i].isFull == false)
 								{
+									// Stick the card to a position on the player boards
 									deckOfCards[i].coordinates.x = cords[j].placementCords.x;
 									deckOfCards[i].coordinates.y = cords[j].placementCords.y;
+									deckOfCards[i].isPlaced = true;
+									cords[i].isFull = true;
 								}
 							}
 						}
@@ -173,13 +183,8 @@ int main()
 			// Warning: the color of every rectangle is BLANK(transparent) so they won't visualy display
 			for (int i = 0; i < 30; i++)
 			{
-				DrawRectangle(cords[i].collisionCords.x, cords[i].collisionCords.y, 50, 50, RED); // Change this color for visual display
+				DrawRectangle(cords[i].collisionCords.x, cords[i].collisionCords.y, 50, 50, BLANK); // Change this color for visual display
 			}
-
-			/*for (int i = 15; i < 30; i++)
-			{
-				DrawTextureEx(binaryCard.texture, Vector2{ cords[i].placementCords.x, cords[i].placementCords.y }, 180, 1, RAYWHITE);
-			}*/
 			
 			// Remember to reset the value of continueDrawing after the card moves out of its place !
 			isGameModeChosen = true; // Update gamemode

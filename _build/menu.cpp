@@ -1,17 +1,23 @@
 #include "menu.h"
 
-void drawMenuText()
+// Draw menu
+void drawMenu()
 {
-	DrawText("Press f to play against another player\nPress j to play against computer", (GetScreenWidth() * 2) / 100, (GetScreenHeight() * 2) / 100, 69, GREEN);
+	DrawTexture(LoadTexture("./../resources/Menu.png"), 0, 0, RAYWHITE);
 }
 
+// Handle keyboard input for differnt gamemodes
 int getPlayOption()
 {
 	if (IsKeyPressed(KEY_F))
 	{
 		return 1;
 	}
-	else if (IsKeyPressed(KEY_J))
+	else if (IsKeyPressed(KEY_G))
+	{
+		return 0;
+	}
+	else
 	{
 		return 0;
 	}
