@@ -23,25 +23,21 @@ struct Card
 {
     int cardType;
     Texture2D texture;
+    Vector2 coordinates;
 
     // Load texture for card type
-    Card(int);
+    Card(int, Vector2);
   
     // Unload textures
      //~Card();
+
+    void drawCard();
 };
 
 // Drag cords
 struct Coordinates{
     Vector2 collisionCords; // Rectangle for collision check
     Vector2 placementCords; // Where a dragged card will clip to
-};
-
-// player cards struct
-struct player 
-{
-    int type;
-    bool isFull;
 };
 
 // Timer struct
@@ -64,10 +60,10 @@ bool timerDone(Timer* timer);
 int *getIntialBinaryOrder(int Array[6]);
 
 // Shuffles cards
-void shuffleDeck(std::vector<std::pair<Card, Vector2>> &deck);
+void shuffleDeck(std::vector<Card> &deck);
 
 // Deal cards
-void dealCards(int &index, std::vector<std::pair<Card, Vector2>> &deckOfCard, int& whichPlaceholder, bool whichTurn);
+void dealCards(int &index, std::vector<Card> &deckOfCard, int& whichPlaceholder, bool whichTurn);
 
 // Get CollisionRentagels X and Y
 Coordinates* getCollisionRentagelsCords(Coordinates cords[30]);

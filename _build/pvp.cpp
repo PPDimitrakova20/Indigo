@@ -1,6 +1,6 @@
 #include "pvp.h"
 
-Card::Card(int type)
+Card::Card(int type, Vector2 cords)
 {
 	char* textureSource[8] = {
 	"./../resources/OR0.png",
@@ -12,8 +12,14 @@ Card::Card(int type)
 	"./../resources/CoverCard.png",
 	"./../resources/IntialBinaryCard.png"
 	};
-	this->cardType = type;
+	cardType = type;
+	coordinates = cords;
 	texture = LoadTexture(textureSource[cardType]);
+}
+
+void Card::drawCard()
+{
+	DrawTexture(texture, coordinates.x, coordinates.y, RAYWHITE);
 }
 
 //Card::~Card()
@@ -33,7 +39,7 @@ int* getIntialBinaryOrder(int Array[6])
 }
 
 // Shuffles cards
-void shuffleDeck(std::vector<std::pair<Card, Vector2>>& deck)
+void shuffleDeck(std::vector<Card> &deck)
 {
 	int randShuffles = rand() % 5 + 1;
 
@@ -48,7 +54,7 @@ void shuffleDeck(std::vector<std::pair<Card, Vector2>>& deck)
 }
 
 // Deal cards
-void dealCards(int& index, std::vector<std::pair<Card, Vector2>>& deckOfCard, int& whichPlaceholder, bool whichTurn)
+void dealCards(int& index, std::vector<Card> &deckOfCards, int& whichPlaceholder, bool whichTurn)
 {
 	// Check if card index is out of bounds
 	if (index < 48)
@@ -62,8 +68,8 @@ void dealCards(int& index, std::vector<std::pair<Card, Vector2>>& deckOfCard, in
 				whichPlaceholder = 0;
 			}
 			// Set card coordinates according to placeHolder
-			deckOfCard[index].second.x = 760 + (135 * whichPlaceholder);
-			deckOfCard[index].second.y = 96;
+			deckOfCards[index].coordinates.x = 760 + (135 * whichPlaceholder);
+			deckOfCards[index].coordinates.y = 96;
 			whichPlaceholder++;
 		}
 		else
@@ -74,8 +80,8 @@ void dealCards(int& index, std::vector<std::pair<Card, Vector2>>& deckOfCard, in
 				whichPlaceholder = 0;
 			}
 			// Set card coordinates according to placeHolder
-			deckOfCard[index].second.x = 655 + (135 * whichPlaceholder);
-			deckOfCard[index].second.y = 833;
+			deckOfCards[index].coordinates.x = 655 + (135 * whichPlaceholder);
+			deckOfCards[index].coordinates.y = 833;
 			whichPlaceholder++;
 		}
 	}
@@ -233,4 +239,3 @@ Coordinates* getCollisionRentagelsCords(Coordinates cords[30])
 
 	return cords;
 }
-
