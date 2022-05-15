@@ -112,7 +112,7 @@ bool timerDone(Timer* timer)
 }
 
 // Get collisionRentagels X and Y
-Vector2 * getCollisionRentagelsCords(Vector2 cords[30])
+Coordinates* getCollisionRentagelsCords(Coordinates cords[30])
 {
 	// Player1's side strating X and Y
 	int p1Xspacing = 0;
@@ -126,6 +126,7 @@ Vector2 * getCollisionRentagelsCords(Vector2 cords[30])
 	int cutOff = 0; // how many colounm will be saved in the array
 	int temp; // spacing between rectagles on each line
 	int index = 0; // the index on which the next cords will be saved on
+	Vector2 disposition = {0,0}; // accounts for horizontal and vertical disposition
 
 	// Player1's CollisionRentagels cords
 	for (int i = 0; i < 5; i++)
@@ -135,11 +136,38 @@ Vector2 * getCollisionRentagelsCords(Vector2 cords[30])
 		p1Yspacing += 160;
 		temp = 0;
 
+		// Assign value for horizontal and vertical disposition
+		switch (i)
+		{
+		case 0:
+			disposition.x = 0;
+			disposition.y = 0;
+			break;
+		case 1:
+			disposition.x = 0;
+			disposition.y = 2;
+			break;
+		case 2:
+		case 3:
+			disposition.x = 1;
+			disposition.y = 3;
+			break;
+		case 4:
+			disposition.x = 2;
+			disposition.y = 3;
+			break;
+		}
+
 		// Assign X and Y to array index
 		for (int j = 0; j < 5 - cutOff; j++)
 		{
-			cords[index].x = p1Xspacing + temp * 115;  
-			cords[index].y = p1Yspacing;
+			// Assign X and Y for collision rectangles
+			cords[index].collisionCords.x = p1Xspacing + temp * 115;  
+			cords[index].collisionCords.y = p1Yspacing;
+
+			// Assign X and Y for placement
+			cords[index].placementCords.x = cords[index].collisionCords.x - 26 + disposition.x;
+			cords[index].placementCords.y = cords[index].collisionCords.y - 48 + disposition.y;
 			temp++;
 
 			// Move on to next index
@@ -161,11 +189,38 @@ Vector2 * getCollisionRentagelsCords(Vector2 cords[30])
 		p2Yspacing -= 160;
 		temp = 0;
 
+		// Assign value for horizontal and vertical disposition
+		switch (i)
+		{
+		case 0:
+			disposition.x = 2;
+			disposition.y = 1;
+			break;
+		case 1:
+			disposition.x = 3;
+			disposition.y = 3;
+			break;
+		case 2:
+		case 3:
+			disposition.x = 4;
+			disposition.y = 4;
+			break;
+		case 4:
+			disposition.x = 5;
+			disposition.y = 5;
+			break;
+		}
+
 		// Assign X and Y to array index
 		for (int j = 0; j < 5 - cutOff; j++)
 		{
-			cords[index].x = p2Xspacing + temp * 115;
-			cords[index].y = p2Yspacing;
+			// Assign X and Y for collision rectangles
+			cords[index].collisionCords.x = p2Xspacing + temp * 115;
+			cords[index].collisionCords.y = p2Yspacing;
+
+			// Assign X and Y for placement
+			cords[index].placementCords.x = cords[index].collisionCords.x - 26 + disposition.x;
+			cords[index].placementCords.y = cords[index].collisionCords.y - 48 - disposition.y;
 			temp++;
 
 			// Move on to next index

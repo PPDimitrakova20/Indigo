@@ -61,8 +61,8 @@ int main()
 	bool whichTurn = 1;
 
 	// CollisionRectangles variables
-	Vector2 cords[30];
-	Vector2* ptrCords = getCollisionRentagelsCords(cords);
+	Coordinates cords[30];
+	Coordinates* ptrCords = getCollisionRentagelsCords(cords);
 	ptrCords = cords;
 
 	while (!WindowShouldClose())
@@ -117,8 +117,8 @@ int main()
 
 					/*if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
 					{
-						deckOfCard[index].second.x = GetMouseX() - 50;
-						deckOfCard[index].second.y = GetMouseY() - 50;
+						deckOfCards[index].second.x = GetMouseX() - 50;
+						deckOfCards[index].second.y = GetMouseY() - 50;
 					}*/
 				}
 
@@ -136,15 +136,16 @@ int main()
 				// Updates timer
 				updateTimer(&textTimer);
 			}
+
+			// Draw collisionRectangles 
+			// Warning: the color of every rectangle is BLANK(transparent) so they won't visualy display
+			for (int i = 0; i < 30; i++)
+			{
+				DrawRectangle(cords[i].collisionCords.x, cords[i].collisionCords.y, 50, 50, BLANK); // Change this color for visual display
+			}
+
 			// Remember to reset the value of continueDrawing after the card moves out of its place !
 			isGameModeChosen = true; // Update gamemode
-		}
-
-		// Draw collisionRectangles 
-		// Warning: the color of every rectangle in BLANK(transparent) so they won't visualy display
-		for (int i = 0; i < 30; i++)
-		{
-			DrawRectangle(cords[i].x, cords[i].y, 50, 50, BLANK); // Change this color for visual display
 		}
 
 		EndDrawing();

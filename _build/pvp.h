@@ -31,6 +31,12 @@ struct Card
      //~Card();
 };
 
+// Drag cords
+struct Coordinates{
+    Vector2 collisionCords; // Rectangle for collision check
+    Vector2 placementCords; // Where a dragged card will clip to
+};
+
 // player cards struct
 struct player 
 {
@@ -64,4 +70,4 @@ void shuffleDeck(std::vector<std::pair<Card, Vector2>> &deck);
 void dealCards(int &index, std::vector<std::pair<Card, Vector2>> &deckOfCard, int& whichPlaceholder, bool whichTurn);
 
 // Get CollisionRentagels X and Y
-Vector2* getCollisionRentagelsCords(Vector2 cords[30]);
+Coordinates* getCollisionRentagelsCords(Coordinates cords[30]);
