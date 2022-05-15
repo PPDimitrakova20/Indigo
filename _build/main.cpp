@@ -173,7 +173,7 @@ int main()
 			// Warning: the color of every rectangle is BLANK(transparent) so they won't visualy display
 			for (int i = 0; i < 30; i++)
 			{
-				DrawRectangle(cords[i].collisionCords.x, cords[i].collisionCords.y, 50, 50, BLANK); // Change this color for visual display
+				DrawRectangle(cords[i].collisionCords.x, cords[i].collisionCords.y, 50, 50, RED); // Change this color for visual display
 			}
 
 			/*for (int i = 15; i < 30; i++)
