@@ -67,8 +67,10 @@ int main()
 	Coordinates* ptrCords = getCollisionRentagelsCords(cords);
 	ptrCords = cords;
 
-	int activeCollisionRectangle;
-	int activePlacement;
+	dealCords dealSpots[8];
+	dealCords* ptrDealPos = getDealCardsPos(dealSpots);
+	ptrDealPos = dealSpots;
+	bool intialPlayerDecksDrawn = false;
 
 	while (!WindowShouldClose())
 	{
@@ -103,29 +105,38 @@ int main()
 			if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && (GetMouseX() >= 910 && GetMouseX() <= 1010) && (GetMouseY() >= 455 && GetMouseY() <= 605))
 			{
 				continueDrawing = true;
+				if (!intialPlayerDecksDrawn)
+				{
+					drawInitailPlayerDecks(dealSpots, index, deckOfCards, whichTurn);
+					intialPlayerDecksDrawn = true;
+				}
 				// Continue player based sequence
 				whichTurn = !whichTurn;
 				index++;
 				// Deal new cards
-				dealCards(index, deckOfCards, whichPlaceholder[whichTurn], whichTurn);
+				if (intialPlayerDecksDrawn)
+				{
+					dealCards(index, deckOfCards, whichPlaceholder[whichTurn], whichTurn);
+				}
 			}
 
 			if (!(index > 47))
 			{
 				// Draw cover cards
-				DrawTexture(coverCard.texture, 910, 464, RAYWHITE);
+				DrawTexture(coverCard.textures[0], 910, 464, RAYWHITE);
 
 				// Keep drawing newly drawn card
 				if (continueDrawing)
 				{
-					drawNewlyDrawnCard(deckOfCards[index].texture, deckOfCards[index].coordinates.x, deckOfCards[index].coordinates.y);
+					drawNewlyDrawnCard(deckOfCards[index].textures, deckOfCards[index].coordinates.x, deckOfCards[index].coordinates.y);
 
 					for (int i = 0; i < 48; i++)
 					{
 						if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) &&
 							(GetMouseX() >= deckOfCards[i].coordinates.x && GetMouseX() <= deckOfCards[i].coordinates.x + 100) &&
 							(GetMouseY() >= deckOfCards[i].coordinates.y && GetMouseY() <= deckOfCards[i].coordinates.y + 150) &&
-							deckOfCards[i].coordinates.x != 910 && deckOfCards[i].coordinates.y != 464)
+							(deckOfCards[i].coordinates.x <= 909 || deckOfCards[i].coordinates.x  >= 911) && 
+							(deckOfCards[i].coordinates.y <= 463 || deckOfCards[i].coordinates.y >= 465))
 						{
 							deckOfCards[i].coordinates.x = GetMouseX() - 50;
 							deckOfCards[i].coordinates.y = GetMouseY() - 75;
@@ -142,7 +153,7 @@ int main()
 						}
 					}
 				}
-
+				 
 				// Starts timer
 				startTimer(&textTimer, textLife);
 			}
@@ -165,10 +176,15 @@ int main()
 				DrawRectangle(cords[i].collisionCords.x, cords[i].collisionCords.y, 50, 50, BLANK); // Change this color for visual display
 			}
 
+			/*for (int i = 15; i < 30; i++)
+			{
+				DrawTextureEx(binaryCard.texture, Vector2{ cords[i].placementCords.x, cords[i].placementCords.y }, 180, 1, RAYWHITE);
+			}*/
+			
 			// Remember to reset the value of continueDrawing after the card moves out of its place !
 			isGameModeChosen = true; // Update gamemode
 		}
-
+		
 		EndDrawing();
 	}
 

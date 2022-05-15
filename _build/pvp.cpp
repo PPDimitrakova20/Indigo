@@ -2,24 +2,32 @@
 
 Card::Card(int type, Vector2 cords)
 {
-	char* textureSource[8] = {
-	"./../resources/OR0.png",
-	"./../resources/OR1.png",
-	"./../resources/AND0.png",
-	"./../resources/AND1.png",
-	"./../resources/XOR0.png",
-	"./../resources/XOR1.png",
-	"./../resources/CoverCard.png",
-	"./../resources/IntialBinaryCard.png"
+	char* textureSource[8][2] = {
+		{"./../resources/OR0.png", "./../resources/OR0Inverted.png"},
+		{"./../resources/OR1.png", "./../resources/OR1Inverted.png"},
+		{"./../resources/AND0.png", "./../resources/AND0Inverted.png"},
+		{"./../resources/AND1.png", "./../resources/AND1Inverted.png"},
+		{"./../resources/XOR0.png", "./../resources/XOR0Inverted.png"},
+		{"./../resources/XOR1.png", "./../resources/XOR1Inverted.png"},
+		{"./../resources/CoverCard.png", "./../resources/CoverCard.png"},
+		{"./../resources/IntialBinaryCard.png", "./../resources/IntialBinaryCard.png"}
 	};
 	cardType = type;
 	coordinates = cords;
-	texture = LoadTexture(textureSource[cardType]);
+	textures[0] = LoadTexture(textureSource[cardType][0]);
+	textures[1] = LoadTexture(textureSource[cardType][1]);
 }
 
 void Card::drawCard()
 {
-	DrawTexture(texture, coordinates.x, coordinates.y, RAYWHITE);
+	if (coordinates.x < 1243)
+	{
+		DrawTextureEx(textures[0], Vector2{coordinates.x,coordinates.y}, 0, 1, RAYWHITE);
+	}
+	else 
+	{
+		DrawTextureEx(textures[1], Vector2{coordinates.x, coordinates.y}, 0, 1, RAYWHITE);
+	}
 }
 
 //Card::~Card()
@@ -53,9 +61,34 @@ void shuffleDeck(std::vector<Card> &deck)
 	}
 }
 
+dealCords* getDealCardsPos(dealCords array[8])
+{
+	Vector2 p1StratingPos = { 760, 96 };
+	Vector2 p2StratingPos = { 655, 833 };
+
+	int index = 0;
+
+	for (int i = 0; i < 4; i++)
+	{
+		array[index].pos.x = p1StratingPos.x + (i * 135);
+		array[index].pos.y = p1StratingPos.y;
+		index++;
+	}
+
+	for (int i = 0; i < 4; i++)
+	{
+		array[index].pos.x = p2StratingPos.x + (i * 135);
+		array[index].pos.y = p2StratingPos.y;
+		index++;
+	}
+
+	return array;
+}
+
 // Deal cards
 void dealCards(int& index, std::vector<Card> &deckOfCards, int& whichPlaceholder, bool whichTurn)
 {
+
 	// Check if card index is out of bounds
 	if (index < 48)
 	{
@@ -132,7 +165,7 @@ Coordinates* getCollisionRentagelsCords(Coordinates cords[30])
 	int cutOff = 0; // how many colounm will be saved in the array
 	int temp; // spacing between rectagles on each line
 	int index = 0; // the index on which the next cords will be saved on
-	Vector2 disposition = {0,0}; // accounts for horizontal and vertical disposition
+	Vector2 offset = { 0, 0 }; // accounts for horizontal and vertical offset
 
 	// Player1's CollisionRentagels cords
 	for (int i = 0; i < 5; i++)
@@ -146,21 +179,21 @@ Coordinates* getCollisionRentagelsCords(Coordinates cords[30])
 		switch (i)
 		{
 		case 0:
-			disposition.x = 0;
-			disposition.y = 0;
+			offset.x = 0;
+			offset.y = 0;
 			break;
 		case 1:
-			disposition.x = 0;
-			disposition.y = 2;
+			offset.x = 0;
+			offset.y = 2;
 			break;
 		case 2:
 		case 3:
-			disposition.x = 1;
-			disposition.y = 3;
+			offset.x = 1;
+			offset.y = 3;
 			break;
 		case 4:
-			disposition.x = 2;
-			disposition.y = 3;
+			offset.x = 2;
+			offset.y = 3;
 			break;
 		}
 
@@ -172,8 +205,8 @@ Coordinates* getCollisionRentagelsCords(Coordinates cords[30])
 			cords[index].collisionCords.y = p1Yspacing;
 
 			// Assign X and Y for placement
-			cords[index].placementCords.x = cords[index].collisionCords.x - 26 + disposition.x;
-			cords[index].placementCords.y = cords[index].collisionCords.y - 48 + disposition.y;
+			cords[index].placementCords.x = cords[index].collisionCords.x - 26 + offset.x;
+			cords[index].placementCords.y = cords[index].collisionCords.y - 48 + offset.y;
 			temp++;
 
 			// Move on to next index
@@ -199,21 +232,21 @@ Coordinates* getCollisionRentagelsCords(Coordinates cords[30])
 		switch (i)
 		{
 		case 0:
-			disposition.x = 2;
-			disposition.y = 1;
+			offset.x = 2;
+			offset.y = 2;
 			break;
 		case 1:
-			disposition.x = 3;
-			disposition.y = 3;
+			offset.x = 3;
+			offset.y = 4;
 			break;
 		case 2:
 		case 3:
-			disposition.x = 4;
-			disposition.y = 4;
+			offset.x = 3;
+			offset.y = 5;
 			break;
 		case 4:
-			disposition.x = 5;
-			disposition.y = 5;
+			offset.x = 4;
+			offset.y = 5;
 			break;
 		}
 
@@ -225,8 +258,8 @@ Coordinates* getCollisionRentagelsCords(Coordinates cords[30])
 			cords[index].collisionCords.y = p2Yspacing;
 
 			// Assign X and Y for placement
-			cords[index].placementCords.x = cords[index].collisionCords.x - 26 + disposition.x;
-			cords[index].placementCords.y = cords[index].collisionCords.y - 48 - disposition.y;
+			cords[index].placementCords.x = cords[index].collisionCords.x - 26 + offset.x;
+			cords[index].placementCords.y = cords[index].collisionCords.y - 48 - offset.y;
 			temp++;
 
 			// Move on to next index
