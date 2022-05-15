@@ -4,17 +4,18 @@
 
 <hr>
 
-## ⚓ Table of Contents
+## 📋 Table of Contents
 - [Description](#description)
 - [Getting started](#gettingStarted)
 - [Built Using](#builtUsing)
 - [Authors](#authors)
+- [Acknowledgements](#acknowledgements)
 
 ## 🔎 Description <a name="description"></a>
 Our project is a recreation of the card game bOOleO, where you need to use boolean logic to create a pyramid faster than your opponent.
 
 ## 🚀 Getting started<a name="gettingStarted"></a>
-These instructions will get you a copy of the project up and running on your local machine.
+*These instructions will get you a copy of the project up and running on your local machine.*
 
 #### Compile from source
 - Prerequisites
@@ -47,3 +48,6 @@ https://github.com/PPDimitrakova20/Indigo.git
 - [Hristiyan Petrov](https://github.com/HMPetrov20) - Quality assurance(QA)
 - [Maksim Vasilev](https://github.com/MDVasilev20) - Backend Developer
 - [Mihail Petrov](https://github.com/MMPetrov20) - Backend Developer
+
+## 🏆 Acknowledgements <a name="acknowledgements"></a>
+- [Tessera Games LLC](https://boardgamegeek.com/boardgamepublisher/9487/tessera-games) - original creators of bOOleO
