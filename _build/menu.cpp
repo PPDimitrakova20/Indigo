@@ -1,9 +1,9 @@
 #include "menu.h"
 
 // Draw menu
-void drawMenu()
+void drawMenu(Texture2D texute)
 {
-	DrawTexture(LoadTexture("./../resources/Menu.png"), 0, 0, RAYWHITE);
+	DrawTexture(texute, 0, 0, RAYWHITE);
 }
 
 // Handle keyboard input for differnt gamemodes

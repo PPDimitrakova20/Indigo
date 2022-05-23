@@ -2,7 +2,7 @@
 #include "raylib.h"
 
 // Draw menu
-void drawMenu();
+void drawMenu(Texture2D texute);
 
 // Handle keyboard input for differnt gamemodes
 int getPlayOption();

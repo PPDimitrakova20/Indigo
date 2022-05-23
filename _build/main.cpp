@@ -14,6 +14,7 @@ int main()
 	// Variables for choosing gamemode
 	int gameMode; // selected gamemode
 	bool isGameModeChosen = false;
+	Texture2D gameMenuTexture = LoadTexture("./../resources/Menu.png"); // game menu texture
 
 	// Vector stores card type with its coordinates
 	std::vector<Card> deckOfCards;
@@ -85,7 +86,7 @@ int main()
 		// Check if the a gamemode has been selected
 		if (!isGameModeChosen)
 		{
-			drawMenu();
+			drawMenu(gameMenuTexture);
 			gameMode = getPlayOption();
 		}
 
